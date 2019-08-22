@@ -1,50 +1,70 @@
+/* ========================================================================
+* Bootstrap: scrollspy.js v3.3.2
+* http://getbootstrap.com/javascript/#scrollspy
+* ========================================================================
+* Copyright 2011-2015 Twitter, Inc.
+* Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+* ======================================================================== */
+
+/**
+ * Customized by iissnan & Ivan.Nginx
+ *
+ * - Add a `clear.bs.scrollspy` event.
+ * - Esacpe targets selector.
+ * - Refactored with eslint-config-theme-next style.
+ */
+
 /* global NexT */
 
-($ => {
+(function($) {
   'use strict';
-  if ($.isFunction($.fn.scrollspy)) return;
+
   // SCROLLSPY CLASS DEFINITION
   // ==========================
   function ScrollSpy(element, options) {
-    this.$body = $(document.body);
+    this.$body          = $(document.body);
     this.$scrollElement = $(element).is(document.body) ? $(window) : $(element);
-    this.options = Object.assign({
-      offset: 10
-    }, options);
-    this.selector = (this.options.target || '') + ' .nav li > a';
-    this.offsets = [];
-    this.targets = [];
-    this.activeTarget = null;
-    this.scrollHeight = 0;
+    this.options        = $.extend({}, ScrollSpy.DEFAULTS, options);
+    this.selector       = (this.options.target || '') + ' .nav li > a';
+    this.offsets        = [];
+    this.targets        = [];
+    this.activeTarget   = null;
+    this.scrollHeight   = 0;
 
     this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this));
     this.refresh();
     this.process();
   }
 
+  ScrollSpy.VERSION  = '3.3.2';
+
+  ScrollSpy.DEFAULTS = {
+    offset: 10
+  };
+
   ScrollSpy.prototype.getScrollHeight = function() {
     return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight);
   };
 
   ScrollSpy.prototype.refresh = function() {
-    var that = this;
-    var offsetMethod = 'offset';
-    var offsetBase = 0;
+    var that          = this;
+    var offsetMethod  = 'offset';
+    var offsetBase    = 0;
 
-    this.offsets = [];
-    this.targets = [];
+    this.offsets      = [];
+    this.targets      = [];
     this.scrollHeight = this.getScrollHeight();
 
     if (!$.isWindow(this.$scrollElement[0])) {
       offsetMethod = 'position';
-      offsetBase = this.$scrollElement.scrollTop();
+      offsetBase   = this.$scrollElement.scrollTop();
     }
 
     this.$body
       .find(this.selector)
       .map(function() {
-        var $el = $(this);
-        var href = $el.data('target') || $el.attr('href');
+        var $el   = $(this);
+        var href  = $el.data('target') || $el.attr('href');
         var $href = /^#./.test(href) && $(NexT.utils.escapeSelector(href)); // Need to escape selector.
 
         return ($href
@@ -59,14 +79,16 @@
         that.offsets.push(this[0]);
         that.targets.push(this[1]);
       });
+
+
   };
 
   ScrollSpy.prototype.process = function() {
-    var scrollTop = this.$scrollElement.scrollTop() + this.options.offset;
+    var scrollTop    = this.$scrollElement.scrollTop() + this.options.offset;
     var scrollHeight = this.getScrollHeight();
-    var maxScroll = this.options.offset + scrollHeight - this.$scrollElement.height();
-    var offsets = this.offsets;
-    var targets = this.targets;
+    var maxScroll    = this.options.offset + scrollHeight - this.$scrollElement.height();
+    var offsets      = this.offsets;
+    var targets      = this.targets;
     var activeTarget = this.activeTarget;
     var i;
 
@@ -97,7 +119,9 @@
 
     this.clear();
 
-    var selector = `${this.selector}[data-target="${target}"],${this.selector}[href="${target}"]`;
+    var selector = this.selector
+      + '[data-target="' + target + '"],'
+      + this.selector + '[href="' + target + '"]';
 
     var active = $(selector)
       .parents('li')
@@ -122,8 +146,8 @@
   // ===========================
   function Plugin(option) {
     return this.each(function() {
-      var $this = $(this);
-      var data = $this.data('bs.scrollspy');
+      var $this   = $(this);
+      var data    = $this.data('bs.scrollspy');
       var options = typeof option === 'object' && option;
 
       if (!data) $this.data('bs.scrollspy', data = new ScrollSpy(this, options));
@@ -131,8 +155,17 @@
     });
   }
 
-  $.fn.scrollspy = Plugin;
+  var old = $.fn.scrollspy;
+
+  $.fn.scrollspy             = Plugin;
   $.fn.scrollspy.Constructor = ScrollSpy;
+
+  // SCROLLSPY NO CONFLICT
+  // =====================
+  $.fn.scrollspy.noConflict = function() {
+    $.fn.scrollspy = old;
+    return this;
+  };
 
   // SCROLLSPY DATA-API
   // ==================
@@ -143,41 +176,4 @@
     });
   });
 
-})(jQuery);
-
-(function() {
-
-  var tocSelector = '.post-toc';
-  var $tocElement = $(tocSelector);
-  var activeCurrentSelector = '.active-current';
-
-  function removeCurrentActiveClass() {
-    $tocElement.find(activeCurrentSelector)
-      .removeClass(activeCurrentSelector.substring(1));
-  }
-
-  $tocElement
-    .on('activate.bs.scrollspy', () => {
-      var $currentActiveElement = $tocElement.find('.active').last();
-
-      removeCurrentActiveClass();
-      $currentActiveElement.addClass('active-current');
-
-      // Scrolling to center active TOC element if TOC content is taller then viewport.
-      $tocElement.scrollTop($currentActiveElement.offset().top - $tocElement.offset().top + $tocElement.scrollTop() - ($tocElement.height() / 2));
-    })
-    .on('clear.bs.scrollspy', removeCurrentActiveClass);
-
-  $('body').scrollspy({ target: tocSelector });
-
-  // TOC item animation navigate & prevent #item selector in adress bar.
-  $tocElement.find('a').on('click', event => {
-    event.preventDefault();
-    var targetSelector = NexT.utils.escapeSelector(event.currentTarget.getAttribute('href'));
-    var offset = $(targetSelector).offset().top;
-
-    $(document.documentElement).stop().animate({
-      scrollTop: offset
-    }, 500);
-  });
-})();
+}(jQuery));
