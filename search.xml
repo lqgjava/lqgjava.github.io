@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[《WEB开发-HEXO博客搭建》第一章Hexo博客搭建]]></title>
+    <url>%2F2019%2F08%2F23%2F%E3%80%8AWEB%E5%BC%80%E5%8F%91-HEXO%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E3%80%8B%E7%AC%AC%E4%B8%80%E7%AB%A0Hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%2F</url>
+    <content type="text"><![CDATA[《WEB开发-HEXO博客搭建》第1章 Hexo博客搭建 Hexo官方：https://hexo.io/ Hexo官方(中文)：https://hexo.io/zh-cn/ Node.js官方网站：https://nodejs.org/en/ Node.js官方文档：https://nodejs.org/en/docs/ Node.js安装文档：https://nodejs.org/en/download/package-manager/ 1.1 Hexo简介 Hexo是一个快速, 简洁且高效的博客框架. 让上百个页面在几秒内瞬间完成渲染. Hexo支持Github Flavored Markdown的所有功能, 甚至可以整合Octopress的大多数插件. 并自己也拥有强大的插件系统。 1.2 node.js安装 Hexo是基于node.js的，所以我们在安装它之前需要用到npm安装工具，这个工具是 node.js 安装包的工具，所以，我们先要安装 node.js。 笔者是用的Windows 64位的，到node.js下载安装包。 图1 下载后直接安装就可以啦，和普通的软件没有什么大的区别，所有笔者就不赘述了。 1.3 GitHub账户创建及客户端安装 关于git账户创建及客户端下载安装等可参看笔者的博客，笔者在这里就不在赘述了。 GitHub官网：https://github.com/ Git和Github的使用：https://blog.csdn.net/u013162035/article/details/78476880 Git下载：https://git-scm.com/downloads Git安装：https://blog.csdn.net/u013162035/article/details/78464161 在github网页上创建一个以username.github.io命名的repositories,此时username为自己github的账号名称。 1.4安装hexo 使用npm安装Hexo，输入以下命令： $ npm install hexo-cli -g 1.5创建Blog 笔者在D盘下新建一个blog的文件夹，然后进入blog文件夹，单击右键打开git bash。 1. 创建一个叫blog网站 $ hexo init 如果没有进入blog文件夹， 就会在当前目录进行初始化。这是初始化命令就要加blog。 $ hexo init blog 如果后面跟了名子就会创建目录并在目录进行初始化操作, 以这个名子为目录名。 2. 我们进入创建的blog目录里. 并运行该服务 $ npm install $ hexo server 【注】hexo命令 $ hexo install 3. 测试网页 打开浏览器, 在地址栏输入http://localhost:4000/可以看到我们刚刚创建的blog首页 4.修改blog目录下的_config.yml配置文件将网站自部署到Github上 $ vim _config.yml 添加如下内容 git repo: git@github.com:用户名/用户名.github.io.git branch: master 1 2 3 【注】在type前面需要增加两个空格，在type的冒号后面需要增加一个空格。请保持代码风格一致，否则会出现错误或是不正确的问题。 5.安装部署使用到的git插件 在这里我们使用的是git源码管理工具，所以，我需要安装git包进行部署，安装这个插件才能使用git进行自动部署。 $ npm install hexo-deployer-git -save 在接下来，我们将要生成网站了，首先清理一下缓存。 $hexo clean 6.进行生成网站 当我们部署网站前，需要先生成静态网站。它会自动在目录下创建public的目录, 并将新生成的网页存放在这个目录里。 $ hexo g或hexo generate 7.进行自动部署网站 注意部署前需要重新生成网站, 每一次修改后都需要重新生成网站并进行部署，生成网站前第6步。 $ hexo d或hexo deploy 如果在部署出现错误信息如果下: 请参考第5步，需要安装git插件 ERROR Deployer not found: git 以上两步可以使用一步就可以搞定： $hexo g -d 【注】上述的部署指令中hexo deploy可以换成hexo server，两者的区别在于，前者是将博客部署到远程的Github上，而后者是运行在本地，通过http://localhost:4000在浏览器中访问。后者是为了调试配置方便而使用，但是最终本地博客还是需要hexo deploy指令将其部署至Github上。 接下来就是查看是否成功啦。打开浏览器输入IP地址。 图2 表明创建成功了。 参考文章：https://blog.csdn.net/u013162035/article/details/80718576]]></content>
+      <categories>
+        <category>WEB开发-HEXO博客搭建</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[2019最新的解决百度网盘下载限速的方法，不限速下载百度云破解版]]></title>
     <url>%2F2019%2F08%2F23%2F2019%E6%9C%80%E6%96%B0%E7%9A%84%E8%A7%A3%E5%86%B3%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E4%B8%8B%E8%BD%BD%E9%99%90%E9%80%9F%E7%9A%84%E6%96%B9%E6%B3%95%EF%BC%8C%E4%B8%8D%E9%99%90%E9%80%9F%E4%B8%8B%E8%BD%BD%E7%99%BE%E5%BA%A6%E4%BA%91%E7%A0%B4%E8%A7%A3%E7%89%88%2F</url>
     <content type="text"><![CDATA[2019最新的解决百度网盘下载限速的方法，不限速下载百度云破解版 下载地址，点击下载，提取码：c25f 永久有效https://pan.baidu.com/s/1G2X8diMTPzTyC_oOvgkyWw 不限速下载以下为软件使用教程，必看 软件使用教程：首先：在打开软件以后先观察是否弹出更新提示，如果有更新提示则必须要更新，一般选择在线自动更新。 第一步，把压缩包下载并解压到你的电脑上，但不要解压到C盘和桌面上。解压完成以后文件夹里的文件如图所示图中用红圈圈出来的文件就是运行的主程序第二步：点击红框中的文件会出现下图中的样子第三步：然后登陆自己的网盘账号以后开始下载情况1、下载自己网盘里的东西 登录之后找到你网盘里的想要下载的文件（不要直接点下载），点击“分享并下载”，然后再确认下载就OK了。 情况2、如果下载在别处获得的链接，请在“下载”栏目下面的“下载分享链接”处下载。如果出现无限验证码或其他错误也可以先保存到自己网盘，然后用1中的方法。软件非常好用，需要的同学可以点击下载了：链接：https://pan.baidu.com/s/1G2X8diMTPzTyC_oOvgkyWw&gt; 提取码：c25f 永久有效]]></content>
