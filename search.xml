@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[超详细的Spring Boot在idea中实现热部署]]></title>
+    <title></title>
     <url>%2F2019%2F08%2F23%2F%E8%B6%85%E8%AF%A6%E7%BB%86%E7%9A%84Spring-Boot%E5%9C%A8idea%E4%B8%AD%E5%AE%9E%E7%8E%B0%E7%83%AD%E9%83%A8%E7%BD%B2%2F</url>
-    <content type="text"><![CDATA[目录 第一步：在pom文件中添加依赖： 第二步：左上角依次找到【File】——【Settings…】——【Build,Execution,Deployment】——【Compiler】， 第三步：使用快捷键 Ctrl + shift + Alt + / 按完，出现如下图： 第四步：重启项目之后，修改代码后，会自动启动项目。 第一步：在pom文件中添加依赖：123456&lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-devtools&lt;/artifactId&gt; &lt;scope&gt;runtime&lt;/scope&gt; &lt;optional&gt;true&lt;/optional&gt;&lt;/dependency&gt; 第二步：左上角依次找到【File】——【Settings…】——【Build,Execution,Deployment】——【Compiler】，勾选”Build project automatically”,然后右下角【Apply】——【OK】: 打开设置的快捷键：Ctrl + Alt + s 详细操作如下图： 第三步：使用快捷键 Ctrl + shift + Alt + / 按完，出现如下图： 第四步：重启项目之后，修改代码后，会自动启动项目。]]></content>
-      <categories>
-        <category>Spring Boot</category>
-      </categories>
-      <tags>
-        <tag>Spring Boot 超详细的Spring Boot在idea中实现热部署</tag>
-      </tags>
+    <content type="text"></content>
   </entry>
   <entry>
     <title><![CDATA[Redis入门，读这一篇就够了]]></title>
