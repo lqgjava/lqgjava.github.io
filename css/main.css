@@ -2147,7 +2147,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #0b884a;
+  background: #770aff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3431,6 +3431,15 @@ ul.breadcrumb li+li:last-child {
     margin: 8px 0 0;
   }
 }
+* {
+  cursor: url("http://om8u46rmb.bkt.clouddn.com/sword2.ico"), auto !important;
+}
+:active {
+  cursor: url("http://om8u46rmb.bkt.clouddn.com/sword1.ico"), auto !important;
+}
+————————————————,
+版权声明：本文为CSDN博主「lm_y」的原创文章，遵循CC 4.0 by-sa版权协议，转载请附上原文出处链接及本声明。,
+原文链接：https:,
 .menu .menu-item a:hover {
   margin-top: 2px;
   border-bottom-color: rgba(161,102,171,0);
