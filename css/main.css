@@ -2147,7 +2147,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #60c4ff;
+  background: #ff36ff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3432,10 +3432,17 @@ ul.breadcrumb li+li:last-child {
   }
 }
 body {
-  background: url("images/bg-back.jpg");
+  background: url("/images/bg-back.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
+}
+.main-inner {
+  margin-top: 60px;
+  padding: 60px 60px 60px 60px;
+  background: #fff;
+  opacity: 0.8;
+  min-height: 500px;
 }
 .menu .menu-item a:hover {
   margin-top: 2px;
