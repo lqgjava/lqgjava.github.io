@@ -2147,7 +2147,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #24ff1b;
+  background: #d4ec8f;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3432,7 +3432,7 @@ ul.breadcrumb li+li:last-child {
   }
 }
 body {
-  background: url("https://source.unsplash.com/random/1600x900");
+  background: url("images/bg-back.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
