@@ -3,7 +3,13 @@
   <entry>
     <title><![CDATA[五、Spring Boot日志配置详解]]></title>
     <url>%2F2019%2F08%2F25%2F%E4%BA%94%E3%80%81Spring-Boot%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[]]></content>
+      <categories>
+        <category>Spring Boot</category>
+      </categories>
+      <tags>
+        <tag>Spring Boot</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[四、Spring Boot多环境配置详解]]></title>
