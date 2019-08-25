@@ -190,7 +190,7 @@
 </script>
   <meta property="og:type" content="website">
 <meta property="og:title" content="凌枫&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/categories/spring-boot/index.html">
+<meta property="og:url" content="http://yoursite.com/tags/Sprng-Boot/index.html">
 <meta property="og:site_name" content="凌枫&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
@@ -201,7 +201,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/spring-boot/">
+  <link rel="canonical" href="http://yoursite.com/tags/Sprng-Boot/">
 
 
 
@@ -211,7 +211,7 @@
   };
 </script>
 
-  <title>分类: spring boot | 凌枫's Blog</title>
+  <title>标签: Sprng Boot | 凌枫's Blog</title>
   
 
 
@@ -351,7 +351,7 @@
         
         
           
-          <li class="menu-item menu-item-tags">
+          <li class="menu-item menu-item-tags menu-item-active">
 
     
     
@@ -368,7 +368,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
 
     
     
@@ -488,11 +488,11 @@
   
   
   
-  <div class="post-block category">
+  <div class="post-block tag">
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>spring boot<small>分类</small>
+        <h1>Sprng Boot<small>标签</small>
         </h1>
       </div>
 
@@ -504,17 +504,17 @@
 
       <h2 class="post-title">
         
-            <a class="post-title-link" href="/2019/08/23/RESTfull-API简单项目的快速搭建/" itemprop="url">
+            <a class="post-title-link" href="/2019/08/25/Spring-Boot错误处理详解/" itemprop="url">
               
-                <span itemprop="name">RESTfull API简单项目的快速搭建</span>
+                <span itemprop="name">九、Spring Boot错误处理详解</span>
               
             </a>
         
       </h2>
 
       <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-08-23T17:37:13+08:00" content="2019-08-23">
-          08-23
+        <time class="post-time" itemprop="dateCreated" datetime="2019-08-25T15:01:30+08:00" content="2019-08-25">
+          08-25
         </time>
       </div>
 
@@ -531,7 +531,6 @@
   
 
   
-
 
 
           </div>
@@ -1309,115 +1308,6 @@
   <script>
     
     function showTime(Counter) {
-      var entries = [];
-      var $visitors = $(".leancloud_visitors");
-
-      $visitors.each(function () {
-        entries.push( $(this).attr("id").trim() );
-      });
-
-      Counter('get', '/classes/Counter', { where: JSON.stringify({ url: { "$in": entries } }) })
-        .done(function ({ results }) {
-          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
-
-          if (results.length === 0) {
-            $visitors.find(COUNT_CONTAINER_REF).text(0);
-            return;
-          }
-
-          for (var i = 0; i < results.length; i++) {
-            var item = results[i];
-            var url = item.url;
-            var time = item.time;
-            var element = document.getElementById(url);
-
-            $(element).find(COUNT_CONTAINER_REF).text(time);
-          }
-          for(var i = 0; i < entries.length; i++) {
-            var url = entries[i];
-            var element = document.getElementById(url);
-            var countSpan = $(element).find(COUNT_CONTAINER_REF);
-            if( countSpan.text() == '') {
-              countSpan.text(0);
-            }
-          }
-        })
-        .fail(function ({ responseJSON }) {
-          console.log("LeanCloud Counter Error: " + responseJSON.code + " " + responseJSON.error);
-        });
-    }
-    
-
-    $(function() {
-      $.get('https://app-router.leancloud.cn/2/route?appId=' + "mtpW2sIlIHeJQk0FGq2ddMVQ-gzGzoHsz")
-        .done(function ({ api_server }) {
-          var Counter = function (method, url, data) {
-            return $.ajax({
-              method: method,
-              url: `https://${api_server}/1.1${url}`,
-              headers: {
-                'X-LC-Id': "mtpW2sIlIHeJQk0FGq2ddMVQ-gzGzoHsz",
-                'X-LC-Key': "S8VWUb1LK61DctReez2JM8P1",
-                'Content-Type': 'application/json',
-              },
-              data: data,
-            });
-          };
-          
-          if ($('.post-title-link').length >= 1) {
-            showTime(Counter);
-          }
-          
-        })
-    });
-  </script>
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-  
-
-
-  
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-<!-- 页面点击小红心 -->
-<script type="text/javascript" src="/js/src/clicklove.js"></script>
-<!-- 雪花特效 -->
-<script type="text/javascript">
-  var windowWidth = $(window).width();
-  if (windowWidth > 480) {
-    document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
-  }
-</script>
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
-</html>
- {
       var entries = [];
       var $visitors = $(".leancloud_visitors");
 
