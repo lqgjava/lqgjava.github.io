@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[一、MyBatis概述]]></title>
+    <url>%2F2019%2F08%2F25%2F%E4%B8%80%E3%80%81MyBatis%E6%A6%82%E8%BF%B0%2F</url>
+    <content type="text"><![CDATA[MyBatis简介 MyBatis原本是apache的一个开源项目iBatis, 2010年该项目由apache software foundation 迁移到了google code并改名为MyBatis 。2013年11月MyBatis又迁移到Github。 The MyBatis SQL mapper framework makes it easier to use a relational database with object-oriented applications. MyBatis couples objects with stored procedures or SQL statements using a XML descriptor or annotations. Simplicity is the biggest advantage of the MyBatis data mapper over object relational mapping tools. MyBatis是一个优秀的持久层框架，它对JDBC操作数据库的过程进行了封装，使开发者只需要关注SQL本身，而不需要开发人员花费大量的精力去处理例如注册驱动、创建connection、创建statement、手动设置参数等JDBC操作。 Mybatis通过xml或注解的方式将要执行的各种statement配置起来，并通过java对象和statement中的sql进行映射生成最终执行的sql语句，最后由MyBatis框架执行sql并将结果映射成java对象并返回。 更多介绍，敬请参见MyBatis官方网站：http://www.mybatis.org/mybatis-3/ MyBatis框架1、SqlMapConfig.xml是MyBatis的全局配置文件，它配置了MyBatis的运行环境等信息。 2、mapper.xml是sql映射文件，它配置了操作数据库的sql语句。此文件需要在SqlMapConfig.xml中加载 3、通过MyBatis配置信息构造SqlSessionFactory(会话工厂) 4、由会话SqlSessionFactory(工厂)创建SqlSession(会话)操作数据库 5、MyBatis底层自定义Executor(执行器)接口用于执行数据库操作，该接口有两个实现：基本执行器和缓存执行器。 6、MappedStatement是MyBatis的底层封装对象，它封装了操作数据库的sql语句，输入参数，输出结果等信息。mapper.xml文件中每一个sql语句对应一个MappedStatement对象，sql语句的id即是MappedStatement的id。 7、MappedStatement对sql执行输入参数进行定义，包括HashMap、基本类型、pojo，Executor通过MappedStatement在执行sql前将输入的java对象映射至sql中 8、MappedStatement对sql执行输出结果进行定义，包括HashMap、基本类型、pojo，Executor通过MappedStatement在执行sql后将输出结果映射至java对象中 MyBatis开发环境在利用MyBatis开发前，请移步MyBatis官网下载开发所有的jar包、开发指南，说明文档等资料。]]></content>
+      <categories>
+        <category>后台</category>
+      </categories>
+      <tags>
+        <tag>MyBatis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[五、Spring Boot日志配置详解]]></title>
     <url>%2F2019%2F08%2F25%2F%E4%BA%94%E3%80%81Spring-Boot%E6%97%A5%E5%BF%97%E9%85%8D%E7%BD%AE%E8%AF%A6%E8%A7%A3%2F</url>
     <content type="text"><![CDATA[]]></content>
