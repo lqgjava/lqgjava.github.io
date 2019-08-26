@@ -1,0 +1,1932 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#fff">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "f10bbdc2"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#fff">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+  <meta name="description" content="1、AOP1.1 AOP概述1) 在软件业，AOP为Aspect Oriented Programming的缩写，意为：面向切面编程，通过预编译方式和运行期动态代理实现程序功能的统一维护的一种技术。 2) AOP是OOP（面向对象编程）的延续，是软件开发中的一个热点，也是Spring框架中的一个重要内容，是函数式编程的一种衍生范型。 3) 利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻">
+<meta name="keywords" content="Spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring第2天">
+<meta property="og:url" content="http://yoursite.com/2019/08/26/Spring第2天/index.html">
+<meta property="og:site_name" content="凌枫&#39;s Blog">
+<meta property="og:description" content="1、AOP1.1 AOP概述1) 在软件业，AOP为Aspect Oriented Programming的缩写，意为：面向切面编程，通过预编译方式和运行期动态代理实现程序功能的统一维护的一种技术。 2) AOP是OOP（面向对象编程）的延续，是软件开发中的一个热点，也是Spring框架中的一个重要内容，是函数式编程的一种衍生范型。 3) 利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps55.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps56.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps57.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps58.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps59.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps60.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps61.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps62.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps63.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps64.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps65.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps66.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps67.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps68.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps69.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps70.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps71.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps72.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps73.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps74.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps75.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps76.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps77.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps78.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps79.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps80.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps81.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps82.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps83.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps84.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps85.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps86.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps87.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps88.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps89.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps90.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps91.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps92.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps93.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps94.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps95.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps96.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps97.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps98.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps99.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps100.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps101.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps102.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps103.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps104.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps105.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps106.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps107.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps108.jpg">
+<meta property="og:updated_time" content="2019-08-26T11:51:25.617Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring第2天">
+<meta name="twitter:description" content="1、AOP1.1 AOP概述1) 在软件业，AOP为Aspect Oriented Programming的缩写，意为：面向切面编程，通过预编译方式和运行期动态代理实现程序功能的统一维护的一种技术。 2) AOP是OOP（面向对象编程）的延续，是软件开发中的一个热点，也是Spring框架中的一个重要内容，是函数式编程的一种衍生范型。 3) 利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻">
+<meta name="twitter:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps55.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/26/Spring第2天/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Spring第2天 | 凌枫's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband">
+		<a href="https://github.com/lqgjava"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+	</div>
+	
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">凌枫's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-futbol-o"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-reading">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/reading/" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>读书/观影</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/26/Spring第2天/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="凌枫">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/mao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="凌枫's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring第2天
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-26 19:42:36 / 修改时间：19:51:25" itemprop="dateCreated datePublished" datetime="2019-08-26T19:42:36+08:00">2019-08-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/后台/" itemprop="url" rel="index"><span itemprop="name">后台</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/08/26/Spring第2天/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/08/26/Spring第2天/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/08/26/Spring第2天/" class="leancloud_visitors" data-flag-title="Spring第2天">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1、AOP"><a href="#1、AOP" class="headerlink" title="1、AOP"></a><strong>1、AOP</strong></h1><h2 id="1-1-AOP概述"><a href="#1-1-AOP概述" class="headerlink" title="1.1 AOP概述"></a><strong>1.1 AOP概述</strong></h2><p>1) 在软件业，<strong>AOP为Aspect Oriented Programming</strong>的缩写，意为：<strong>面向切面编程</strong>，通过预编译方式和运行期动态代理实现程序功能的统一维护的一种技术。</p>
+<p>2) AOP是OOP（面向对象编程）的延续，是软件开发中的一个热点，也是Spring框架中的一个重要内容，是函数式编程的一种衍生范型。</p>
+<p>3) 利用AOP可以对业务逻辑的各个部分进行隔离，从而使得业务逻辑各部分之间的耦合度降低，提高程序的可重用性，同时提高了开发的效率。</p>
+<p>4) AOP采取横向抽取机制，取代了传统纵向继承体系重复性代码</p>
+<p><strong>5)</strong> <strong>经典应用：事务管理、性能监视、安全检查、缓存 、日志等**</strong>【画图】**</p>
+<p>6) Spring AOP使用纯Java实现，不需要专门的编译过程和类加载器，在运行期通过代理方式向目标类织入增强代码</p>
+<p><strong>7)</strong> <strong>AspectJ是一个基于Java语言的AOP框架</strong>，Spring2.0开始，Spring AOP引入对Aspect的支持，AspectJ扩展了Java语言，提供了一个专门的编译器，在编译时提供横向代码的织入</p>
+<h2 id="1-2-AOP实现原理"><a href="#1-2-AOP实现原理" class="headerlink" title="1.2 AOP实现原理"></a><strong>1.2 AOP实现原理</strong></h2><p>a. aop底层将采用代理机制进行实现。</p>
+<p>b. 接口 + 实现类 ：spring采用 jdk 的<strong>动态代理Proxy</strong>。</p>
+<p>c. 实现类：spring 采用 <strong>cglib字节码</strong>增强。</p>
+<h2 id="1-3-AOP术语"><a href="#1-3-AOP术语" class="headerlink" title="1.3 AOP术语"></a><strong>1.3 AOP术语</strong></h2><p><strong>1.target：</strong>目标类，需要被代理的类。例如：UserService</p>
+<p><strong>2.Joinpoint</strong>(连接点):所谓连接点是指那些可能被拦截到的方法。例如：所有的方法</p>
+<p><strong>3.PointCut</strong> 切入点：已经被增强的连接点。例如：addUser()</p>
+<p>4.<strong>advice 通知/增强</strong>，<strong>增强代码</strong>。例如：after、before</p>
+<p><strong>5. Weaving</strong>(织入):是指把增强advice应用到目标对象target来创建新的代理对象proxy的过程.</p>
+<p><strong>6.proxy</strong> 代理类</p>
+<p><strong>7. Aspect</strong>(切面): 是切入点pointcut和通知advice的结合</p>
+<p>​    一个线是一个特殊的面。</p>
+<p>​    一个切入点和一个通知，组成成一个特殊的面。</p>
+<p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps55.jpg" alt="img"> </p>
+<h2 id="1-4-手动代理"><a href="#1-4-手动代理" class="headerlink" title="1.4 手动代理"></a><strong>1.4 手动代理</strong></h2><h3 id="1-4-1-JDK动态代理"><a href="#1-4-1-JDK动态代理" class="headerlink" title="1.4.1 JDK动态代理"></a><strong>1.4.1 JDK动态代理</strong></h3><h4 id="目标类"><a href="#目标类" class="headerlink" title="目标类"></a><strong>目标类</strong></h4><table>
+<thead>
+<tr>
+<th><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps56.jpg" alt="img"></th>
+<th><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps57.jpg" alt="img"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h4 id="切面类"><a href="#切面类" class="headerlink" title="切面类"></a><strong>切面类</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps58.jpg" alt="img"> </p>
+<h4 id="工厂类"><a href="#工厂类" class="headerlink" title="工厂类"></a><strong>工厂类</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps59.jpg" alt="img"> </p>
+<h4 id="测试类"><a href="#测试类" class="headerlink" title="测试类"></a><strong>测试类</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps60.jpg" alt="img"> </p>
+<h3 id="1-4-2-cglib-增强字节码"><a href="#1-4-2-cglib-增强字节码" class="headerlink" title="1.4.2 cglib 增强字节码"></a><strong>1.4.2 cglib 增强字节码</strong></h3><p>n 没有接口，只有实现类。</p>
+<p>n 采用字节码增强框架 cglib，在运行时 创建目标类的子类，从而对目标类进行增强。</p>
+<p>n 导入jar包：</p>
+<p>自己导包（了解）：</p>
+<p>​    核心：hibernate-distribution-3.6.10.Final\lib\bytecode\cglib\cglib-2.2.jar</p>
+<p>​    依赖：struts-2.3.15.3\apps\struts2-blank\WEB-INF\lib\asm-3.3.jar</p>
+<p>​    <strong>spring-core..jar 已经整合以上两个内容</strong></p>
+<p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps61.jpg" alt="img"> </p>
+<h4 id="工厂类-1"><a href="#工厂类-1" class="headerlink" title="工厂类"></a><strong>工厂类</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps62.jpg" alt="img"> </p>
+<h4 id="测试结果"><a href="#测试结果" class="headerlink" title="测试结果"></a><strong>测试结果</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps63.jpg" alt="img"> </p>
+<h2 id="1-5-AOP联盟通知类型"><a href="#1-5-AOP联盟通知类型" class="headerlink" title="1.5 AOP联盟通知类型"></a><strong>1.5 AOP联盟通知类型</strong></h2><p>AOP联盟为通知Advice定义了org.aopalliance.aop.AdviceSpring按照通知Advice在目标类方法的连接点位置，可以分为5类    •<strong>前置通知</strong> org.springframework.aop.MethodBeforeAdvice    •在目标方法执行前实施增强     •<strong>后置通知</strong> org.springframework.aop.AfterReturningAdvice    •在目标方法执行后实施增强     •<strong>环绕通知</strong> org.aopalliance.intercept.MethodInterceptor    •在目标方法执行前后实施增强     •<strong>异常抛出通知</strong> org.springframework.aop.ThrowsAdvice    •在方法抛出异常后实施增强     •<strong>引介通知</strong> org.springframework.aop.IntroductionInterceptor    在目标类中添加一些新的方法和属性</p>
+<p><strong>环绕通知</strong>，<strong>必须手动执行目标方法</strong>try{   //前置通知   //执行目标方法   //后置通知} catch(){   //抛出异常通知}</p>
+<h2 id="1-6-Spring编写代理半自动"><a href="#1-6-Spring编写代理半自动" class="headerlink" title="1.6 Spring编写代理半自动"></a><strong>1.6 Spring编写代理半自动</strong></h2><p>目标：掌握让spring 创建代理对象，从spring容器中手动的获取代理对象。</p>
+<h3 id="第一步：导Jar包"><a href="#第一步：导Jar包" class="headerlink" title="第一步：导Jar包"></a><strong>第一步：导Jar包</strong></h3><p>【核心4+1 、AOP联盟（规范）、spring-aop （实现）】</p>
+<p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps64.jpg" alt="img"> </p>
+<h3 id="第二步：目标类"><a href="#第二步：目标类" class="headerlink" title="第二步：目标类"></a><strong>第二步：目标类</strong></h3><table>
+<thead>
+<tr>
+<th><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps65.jpg" alt="img"></th>
+<th><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps66.jpg" alt="img"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="第三步：切面类"><a href="#第三步：切面类" class="headerlink" title="第三步：切面类"></a><strong>第三步：切面类</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps67.jpg" alt="img"> </p>
+<h3 id="第四步：spring配置"><a href="#第四步：spring配置" class="headerlink" title="第四步：spring配置"></a><strong>第四步：spring配置</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps68.jpg" alt="img"> </p>
+<h3 id="第五步：测试"><a href="#第五步：测试" class="headerlink" title="第五步：测试"></a><strong>第五步：测试</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps69.jpg" alt="img"> </p>
+<h2 id="1-7-Spring-AOP全自动编程"><a href="#1-7-Spring-AOP全自动编程" class="headerlink" title="1.7 Spring AOP全自动编程"></a><strong>1.7 Spring AOP全自动编程</strong></h2><p>目录：明白什么是全自动织入</p>
+<h3 id="第一步：-导入jar包"><a href="#第一步：-导入jar包" class="headerlink" title="第一步：**导入jar包**"></a><strong>第一步：**</strong>导入jar包**</h3><p>spring-framework-3.0.2.RELEASE-dependencies\org.aspectj\com.springsource.org.aspectj.weaver\1.6.8.RELEASE</p>
+<p><strong><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps70.jpg" alt="img"></strong> </p>
+<h3 id="第二步：Spring-的AOP配置"><a href="#第二步：Spring-的AOP配置" class="headerlink" title="第二步：Spring 的AOP配置"></a><strong>第二步：Spring 的AOP配置</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps71.jpg" alt="img"> </p>
+<h3 id="第三步：测试"><a href="#第三步：测试" class="headerlink" title="第三步：测试"></a><strong>第三步：测试</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps72.jpg" alt="img"> </p>
+<h1 id="2、-AspectJ"><a href="#2、-AspectJ" class="headerlink" title="2、**AspectJ**"></a><strong>2、**</strong>AspectJ**</h1><h2 id="2-1-AspectJ简介"><a href="#2-1-AspectJ简介" class="headerlink" title="2.1 AspectJ简介"></a><strong>2.1 AspectJ简介</strong></h2><p>v AspectJ是一个基于Java语言的AOP框架</p>
+<p>v Spring2.0以后新增了对AspectJ切点表达式支持</p>
+<p>v @AspectJ 是AspectJ1.5新增功能，通过JDK5注解技术，允许直接在Bean类中定义切面</p>
+<p><strong>v</strong> <strong>新版本Spring框架，建议使用AspectJ方式来开发AOP</strong></p>
+<p><strong>v</strong> <strong>主要用途：自定义开发</strong></p>
+<h2 id="2-2-切入点表达式【掌握】"><a href="#2-2-切入点表达式【掌握】" class="headerlink" title="2.2 切入点表达式【掌握】"></a><strong>2.2 切入点表达式【掌握】</strong></h2><h3 id="execution"><a href="#execution" class="headerlink" title="execution()"></a><strong>execution()</strong></h3><p>用于描述方法 【掌握】</p>
+<p>语法：execution(修饰符  返回值  包.类.方法名(参数) throws异常)</p>
+<p><strong>修饰符，一般省略</strong></p>
+<p>​    public        公共方法</p>
+<p>​    *            任意</p>
+<p><strong>返回值，不能省略</strong></p>
+<p>​    void            返回没有值</p>
+<p>​    String        返回值字符串</p>
+<p>​    *             任意</p>
+<p><strong>包，[省略]</strong></p>
+<p>​    com.gyf.crm            固定包</p>
+<p>​    com.gyf.crm.*.service    crm包下面子包任意 （例如：com.gyf.crm.staff.service）</p>
+<p>​    com.gyf.crm..            crm包下面的所有子包（含自己）</p>
+<p>​    com.gyf.crm.*.service..    crm包下面任意子包，固定目录service，service目录任意包</p>
+<p><strong>类，[省略]</strong></p>
+<p>​    UserServiceImpl            指定类</p>
+<p>​    *Impl                    以Impl结尾</p>
+<p>​    User*                    以User开头</p>
+<p>​    *                        任意</p>
+<p><strong>方法名，不能省略</strong></p>
+<p>​    addUser                    固定方法</p>
+<p>​    add*                        以add开头</p>
+<p>​    *Do                        以Do结尾</p>
+<p>​    *                        任意</p>
+<p><strong>(参数)</strong></p>
+<p>​    ()                        无参</p>
+<p>​    (int)                        一个整型</p>
+<p>​    (int ,int)                    两个</p>
+<p>​    (..)                        参数任意</p>
+<p><strong>throws ,可省略，一般不写</strong>。</p>
+<p><strong>案例1：</strong></p>
+<p>execution(<em>com.gyf.crm.</em>.service..<em>.</em>(..))</p>
+<p><strong>案例2：或</strong></p>
+<p><strong>&lt;aop:pointcut expression=”execution(* com.gyf.crm.service.*.*(..)) ||</strong> </p>
+<p>​                          <strong>execution(* com.gyf.*Do.*(..))” id=”myPointCut”/&gt;</strong></p>
+<h3 id="within"><a href="#within" class="headerlink" title="within:"></a><strong>within:</strong></h3><p>匹配包或子包中的方法(了解)</p>
+<p>within(com.gyf.aop..*)</p>
+<h3 id="this"><a href="#this" class="headerlink" title="this:"></a><strong>this:</strong></h3><p>匹配实现接口的代理对象中的方法(了解)</p>
+<p>this(com.gyf.aop.user.UserDAO)</p>
+<h3 id="target"><a href="#target" class="headerlink" title="target:"></a><strong>target:</strong></h3><p>匹配实现接口的目标对象中的方法(了解)</p>
+<p>target(com.gyf.aop.user.UserDAO)</p>
+<h3 id="args"><a href="#args" class="headerlink" title="args:"></a><strong>args:</strong></h3><p>匹配参数格式符合标准的方法(了解)</p>
+<p>args(int,int)</p>
+<h3 id="bean-id"><a href="#bean-id" class="headerlink" title="bean(id)"></a><strong>bean(id)</strong></h3><p>对指定的bean所有的方法(了解)</p>
+<p>bean(‘userServiceId’)</p>
+<h2 id="2-3-AspectJ-通知类型"><a href="#2-3-AspectJ-通知类型" class="headerlink" title="2.3 AspectJ 通知类型"></a><strong>2.3 AspectJ 通知类型</strong></h2><p>aop联盟定义通知类型，具有特性接口，必须实现，从而确定方法名称。aspectj 通知类型，只定义类型名称，以及方法格式。个数：6种，<strong>知道5种，掌握1</strong>中。    before:前置通知(应用：各种校验)        在方法执行前执行，如果通知抛出异常，阻止方法运行    afterReturning:后置通知(应用：常规数据处理)        方法正常返回后执行，如果方法中抛出异常，通知无法执行        必须在方法执行后才执行，所以可以获得方法的返回值。    around:环绕通知(应用：十分强大，可以做任何事情)        方法执行前后分别执行，可以阻止方法的执行        <strong>必须手动执行目标方法</strong>    afterThrowing:抛出异常通知(应用：包装异常信息)        方法抛出异常后执行，如果方法没有抛出异常，无法执行    after:最终通知(应用：清理现场)        方法执行完毕后执行，无论方法中是否出现异常</p>
+<table>
+<thead>
+<tr>
+<th><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps73.jpg" alt="img"></th>
+<th><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps74.jpg" alt="img"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>查看源码</p>
+<table>
+<thead>
+<tr>
+<th><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps75.jpg" alt="img"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps76.jpg" alt="img"></td>
+</tr>
+</tbody></table>
+<h2 id="2-4-Aspect案例讲解【其于xml】"><a href="#2-4-Aspect案例讲解【其于xml】" class="headerlink" title="2.4 Aspect案例讲解【其于xml】"></a><strong>2.4 Aspect案例讲解【其于xml】</strong></h2><h3 id="第一步：导包"><a href="#第一步：导包" class="headerlink" title="第一步：导包"></a><strong>第一步：导包</strong></h3><table>
+<thead>
+<tr>
+<th><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps77.jpg" alt="img"></th>
+<th>AOP联盟规范</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps78.jpg" alt="img"></td>
+<td>AOP实现</td>
+</tr>
+<tr>
+<td><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps79.jpg" alt="img"></td>
+<td>规范</td>
+</tr>
+<tr>
+<td><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps80.jpg" alt="img"></td>
+<td>aspectj实现</td>
+</tr>
+</tbody></table>
+<p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps81.jpg" alt="img"> </p>
+<h3 id="第二步：实现类和切面类"><a href="#第二步：实现类和切面类" class="headerlink" title="第二步：实现类和切面类"></a><strong>第二步：实现类和切面类</strong></h3><table>
+<thead>
+<tr>
+<th><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps82.jpg" alt="img"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps83.jpg" alt="img"></td>
+</tr>
+</tbody></table>
+<h3 id="第三步：spring的xml配置"><a href="#第三步：spring的xml配置" class="headerlink" title="第三步：spring的xml配置"></a><strong>第三步：spring的xml配置</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps84.jpg" alt="img"> </p>
+<h3 id="第四步：测试"><a href="#第四步：测试" class="headerlink" title="第四步：测试"></a><strong>第四步：测试</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps85.jpg" alt="img"> </p>
+<h2 id="2-5-Aspect案例讲解【其于xml】"><a href="#2-5-Aspect案例讲解【其于xml】" class="headerlink" title="2.5 Aspect案例讲解【其于xml】"></a><strong>2.5 Aspect案例讲解【其于xml】</strong></h2><h3 id="第1步：声明使用注解"><a href="#第1步：声明使用注解" class="headerlink" title="第1步：声明使用注解"></a><strong>第1步：声明使用注解</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps86.jpg" alt="img"> </p>
+<h3 id="第2步：替换service和-切面-bean"><a href="#第2步：替换service和-切面-bean" class="headerlink" title="第2步：替换service和 切面 bean"></a><strong>第2步：替换service和 切面 bean</strong></h3><table>
+<thead>
+<tr>
+<th><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps87.jpg" alt="img"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps88.jpg" alt="img"></td>
+</tr>
+<tr>
+<td><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps89.jpg" alt="img"></td>
+</tr>
+</tbody></table>
+<h3 id="第3步：声明切面"><a href="#第3步：声明切面" class="headerlink" title="第3步：声明切面"></a><strong>第3步：声明切面</strong></h3><table>
+<thead>
+<tr>
+<th><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps90.jpg" alt="img"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps91.jpg" alt="img"></td>
+</tr>
+</tbody></table>
+<h3 id="第4步：声明前置通知"><a href="#第4步：声明前置通知" class="headerlink" title="第4步：声明前置通知"></a><strong>第4步：声明前置通知</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps92.jpg" alt="img"> </p>
+<h3 id="第5步：声明公共切入点"><a href="#第5步：声明公共切入点" class="headerlink" title="第5步：声明公共切入点"></a><strong>第5步：声明公共切入点</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps93.jpg" alt="img"> </p>
+<h3 id="第6步：声明后置通知"><a href="#第6步：声明后置通知" class="headerlink" title="第6步：声明后置通知"></a><strong>第6步：声明后置通知</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps94.jpg" alt="img"> </p>
+<h3 id="第7步：声明环绕通知"><a href="#第7步：声明环绕通知" class="headerlink" title="第7步：声明环绕通知"></a><strong>第7步：声明环绕通知</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps95.jpg" alt="img"> </p>
+<h3 id="第8步：声明异常通知"><a href="#第8步：声明异常通知" class="headerlink" title="第8步：声明异常通知"></a><strong>第8步：声明异常通知</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps96.jpg" alt="img"> </p>
+<h3 id="第9步：声明最终通知"><a href="#第9步：声明最终通知" class="headerlink" title="第9步：声明最终通知"></a><strong>第9步：声明最终通知</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps97.jpg" alt="img"> </p>
+<h3 id="注解总结"><a href="#注解总结" class="headerlink" title="注解总结"></a><strong>注解总结</strong></h3><p>@Aspect  声明切面，修饰切面类，从而获得 通知。</p>
+<p>通知</p>
+<p>​    @Before 前置</p>
+<p>​    @AfterReturning 后置</p>
+<p>​    @Around 环绕</p>
+<p>​    @AfterThrowing 抛出异常</p>
+<p>​    @After 最终</p>
+<p>切入点</p>
+<p>​    @PointCut ，修饰方法 private void xxx(){}  之后通过“方法名”获得切入点引用</p>
+<h1 id="3-JdbcTemplate"><a href="#3-JdbcTemplate" class="headerlink" title="3 JdbcTemplate"></a><strong>3 JdbcTemplate</strong></h1><h2 id="3-1-简介"><a href="#3-1-简介" class="headerlink" title="3.1 简介"></a><strong>3.1 简介</strong></h2><p>Ø jdbcTemplate类似人DBUtils,用于操作Jdbc的工具类，它需要依赖于连接池DataSource(数据源)</p>
+<p>Ø JDBC（Java DataBase Connectivity,java数据库连接）是一种用于执行SQL语句的Java API</p>
+<p>Ø ODBC（Open Database Connectivity，ODBC）开放数据库连接,是微软公司开提供了一组对数据库访问的标准API（应用程序编程接口）</p>
+<p>Ø DBCP（DataBase Connection Pool）数据库连接池，是java数据库连接池的一种，由Apache开发</p>
+<p>Ø C3P0是一个开源的JDBC连接池，它实现了数据源和JNDI绑定，支持JDBC3规范和JDBC2的标准扩展。目前使用它的开源项目有Hibernate，Spring等。</p>
+<p><strong>c3p0与dbcp区别</strong></p>
+<p>dbcp没有自动回收空闲连接的功能</p>
+<p>c3p0有自动回收空闲连接功能</p>
+<h2 id="3-2-环境搭建"><a href="#3-2-环境搭建" class="headerlink" title="3.2 环境搭建"></a><strong>3.2 环境搭建</strong></h2><h3 id="创建数据库和表"><a href="#创建数据库和表" class="headerlink" title="创建数据库和表"></a><strong>创建数据库和表</strong></h3><p>create database spring_day02;use spring_day02;create table t_user(  id int primary key auto_increment,  username varchar(50),  password varchar(32)); insert into t_user(username,password) values(‘jack’,’520’);insert into t_user(username,password) values(‘rose’,’521’);</p>
+<h3 id="创建工程导入Jar包"><a href="#创建工程导入Jar包" class="headerlink" title="创建工程导入Jar包"></a><strong>创建工程导入Jar包</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps98.jpg" alt="img"> </p>
+<h3 id="创建JavaBean-数据模型"><a href="#创建JavaBean-数据模型" class="headerlink" title="创建JavaBean,数据模型"></a><strong>创建JavaBean,数据模型</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps99.jpg" alt="img"> </p>
+<h2 id="3-3-API使用【了解】"><a href="#3-3-API使用【了解】" class="headerlink" title="3.3 API使用【了解】"></a><strong>3.3 API使用【了解】</strong></h2><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps100.jpg" alt="img"> </p>
+<h2 id="3-4-配置DBCP"><a href="#3-4-配置DBCP" class="headerlink" title="3.4 配置DBCP"></a><strong>3.4 配置DBCP</strong></h2><table>
+<thead>
+<tr>
+<th>beans.xml</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps101.jpg" alt="img"></td>
+</tr>
+<tr>
+<td>测试</td>
+</tr>
+<tr>
+<td><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps102.jpg" alt="img"></td>
+</tr>
+</tbody></table>
+<h2 id="3-5-配置c3p0"><a href="#3-5-配置c3p0" class="headerlink" title="3.5 配置c3p0"></a><strong>3.5 配置c3p0</strong></h2><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps103.jpg" alt="img"> </p>
+<h2 id="3-6-使用JdbcDaoSupport"><a href="#3-6-使用JdbcDaoSupport" class="headerlink" title="3.6 使用JdbcDaoSupport"></a><strong>3.6</strong> <strong>使用JdbcDaoSupport</strong></h2><h3 id="dao层"><a href="#dao层" class="headerlink" title="dao层"></a><strong>dao层</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps104.jpg" alt="img"> </p>
+<h3 id="Beans-xml"><a href="#Beans-xml" class="headerlink" title="Beans.xml"></a><strong>Beans.xml</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps105.jpg" alt="img"> </p>
+<h3 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a><strong>源码分析</strong></h3><p><strong>通过数据源创建模板</strong></p>
+<p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps106.jpg" alt="img"> </p>
+<h2 id="3-7-配置properties"><a href="#3-7-配置properties" class="headerlink" title="3.7 配置properties"></a><strong>3.7</strong> <strong>配置properties</strong></h2><p>目数据库的连接信息配置到一个独立的文件中</p>
+<h3 id="在src写个db-properties文件"><a href="#在src写个db-properties文件" class="headerlink" title="在src写个db.properties文件"></a><strong>在src写个db.properties文件</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps107.jpg" alt="img"> </p>
+<h3 id="beans-xml"><a href="#beans-xml" class="headerlink" title="beans.xml"></a><strong>beans.xml</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps108.jpg" alt="img"></p>
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+            
+          
+    </div>
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.jpg" alt="博主 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zfb.jpg" alt="博主 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" rel="tag"><i class="fa fa-tag"></i>Spring</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/26/Spring第3天/" rel="prev" title="Spring第3天">
+                 <i class="fa fa-chevron-left"></i> Spring第3天
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/26/Spring第1天/" rel="next" title="Spring第1天">
+                Spring第1天 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image" src="/images/mao.jpg" alt="凌枫">
+            </a>
+            
+              <p class="site-author-name" itemprop="name">凌枫</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/lqgjava" title="GitHub &rarr; https://github.com/lqgjava" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:seriouszyx@gmail.com" title="E-Mail &rarr; mailto:seriouszyx@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://plus.google.com/seriouszyx" title="Google &rarr; https://plus.google.com/seriouszyx" rel="noopener" target="_blank"><i class="fa fa-fw fa-google"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/seriouszyx1" title="Twitter &rarr; https://twitter.com/seriouszyx1" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/6373109128/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="Weibo &rarr; https://weibo.com/6373109128/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.zhihu.com/people/ling-feng-zero/activities" title="zhihu &rarr; https://www.zhihu.com/people/ling-feng-zero/activities" rel="noopener" target="_blank"><i class="fa fa-fw fa-zhihu"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://blog.csdn.net/qq_43674132" title="CSDN &rarr; https://blog.csdn.net/qq_43674132" rel="noopener" target="_blank"><i class="fa fa-fw fa-csdn"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/qq_43674132" title="https://blog.csdn.net/qq_43674132" rel="noopener" target="_blank">我的个人简历</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1、AOP"><span class="nav-number">1.</span> <span class="nav-text">1、AOP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-AOP概述"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 AOP概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-AOP实现原理"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 AOP实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-AOP术语"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 AOP术语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-手动代理"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 手动代理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-1-JDK动态代理"><span class="nav-number">1.4.1.</span> <span class="nav-text">1.4.1 JDK动态代理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#目标类"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">目标类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#切面类"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">切面类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#工厂类"><span class="nav-number">1.4.1.3.</span> <span class="nav-text">工厂类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试类"><span class="nav-number">1.4.1.4.</span> <span class="nav-text">测试类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-4-2-cglib-增强字节码"><span class="nav-number">1.4.2.</span> <span class="nav-text">1.4.2 cglib 增强字节码</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#工厂类-1"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">工厂类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试结果"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">测试结果</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-AOP联盟通知类型"><span class="nav-number">1.5.</span> <span class="nav-text">1.5 AOP联盟通知类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-Spring编写代理半自动"><span class="nav-number">1.6.</span> <span class="nav-text">1.6 Spring编写代理半自动</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：导Jar包"><span class="nav-number">1.6.1.</span> <span class="nav-text">第一步：导Jar包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：目标类"><span class="nav-number">1.6.2.</span> <span class="nav-text">第二步：目标类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：切面类"><span class="nav-number">1.6.3.</span> <span class="nav-text">第三步：切面类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四步：spring配置"><span class="nav-number">1.6.4.</span> <span class="nav-text">第四步：spring配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五步：测试"><span class="nav-number">1.6.5.</span> <span class="nav-text">第五步：测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-7-Spring-AOP全自动编程"><span class="nav-number">1.7.</span> <span class="nav-text">1.7 Spring AOP全自动编程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：-导入jar包"><span class="nav-number">1.7.1.</span> <span class="nav-text">第一步：**导入jar包**</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：Spring-的AOP配置"><span class="nav-number">1.7.2.</span> <span class="nav-text">第二步：Spring 的AOP配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：测试"><span class="nav-number">1.7.3.</span> <span class="nav-text">第三步：测试</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2、-AspectJ"><span class="nav-number">2.</span> <span class="nav-text">2、**AspectJ**</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-AspectJ简介"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 AspectJ简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-切入点表达式【掌握】"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 切入点表达式【掌握】</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#execution"><span class="nav-number">2.2.1.</span> <span class="nav-text">execution()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#within"><span class="nav-number">2.2.2.</span> <span class="nav-text">within:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#this"><span class="nav-number">2.2.3.</span> <span class="nav-text">this:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#target"><span class="nav-number">2.2.4.</span> <span class="nav-text">target:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#args"><span class="nav-number">2.2.5.</span> <span class="nav-text">args:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bean-id"><span class="nav-number">2.2.6.</span> <span class="nav-text">bean(id)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-AspectJ-通知类型"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 AspectJ 通知类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-Aspect案例讲解【其于xml】"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 Aspect案例讲解【其于xml】</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：导包"><span class="nav-number">2.4.1.</span> <span class="nav-text">第一步：导包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：实现类和切面类"><span class="nav-number">2.4.2.</span> <span class="nav-text">第二步：实现类和切面类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：spring的xml配置"><span class="nav-number">2.4.3.</span> <span class="nav-text">第三步：spring的xml配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四步：测试"><span class="nav-number">2.4.4.</span> <span class="nav-text">第四步：测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-Aspect案例讲解【其于xml】"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 Aspect案例讲解【其于xml】</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第1步：声明使用注解"><span class="nav-number">2.5.1.</span> <span class="nav-text">第1步：声明使用注解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第2步：替换service和-切面-bean"><span class="nav-number">2.5.2.</span> <span class="nav-text">第2步：替换service和 切面 bean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第3步：声明切面"><span class="nav-number">2.5.3.</span> <span class="nav-text">第3步：声明切面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第4步：声明前置通知"><span class="nav-number">2.5.4.</span> <span class="nav-text">第4步：声明前置通知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第5步：声明公共切入点"><span class="nav-number">2.5.5.</span> <span class="nav-text">第5步：声明公共切入点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第6步：声明后置通知"><span class="nav-number">2.5.6.</span> <span class="nav-text">第6步：声明后置通知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第7步：声明环绕通知"><span class="nav-number">2.5.7.</span> <span class="nav-text">第7步：声明环绕通知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第8步：声明异常通知"><span class="nav-number">2.5.8.</span> <span class="nav-text">第8步：声明异常通知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第9步：声明最终通知"><span class="nav-number">2.5.9.</span> <span class="nav-text">第9步：声明最终通知</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注解总结"><span class="nav-number">2.5.10.</span> <span class="nav-text">注解总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-JdbcTemplate"><span class="nav-number">3.</span> <span class="nav-text">3 JdbcTemplate</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-简介"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-环境搭建"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建数据库和表"><span class="nav-number">3.2.1.</span> <span class="nav-text">创建数据库和表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建工程导入Jar包"><span class="nav-number">3.2.2.</span> <span class="nav-text">创建工程导入Jar包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建JavaBean-数据模型"><span class="nav-number">3.2.3.</span> <span class="nav-text">创建JavaBean,数据模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-API使用【了解】"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 API使用【了解】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-配置DBCP"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 配置DBCP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-配置c3p0"><span class="nav-number">3.5.</span> <span class="nav-text">3.5 配置c3p0</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-使用JdbcDaoSupport"><span class="nav-number">3.6.</span> <span class="nav-text">3.6 使用JdbcDaoSupport</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dao层"><span class="nav-number">3.6.1.</span> <span class="nav-text">dao层</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Beans-xml"><span class="nav-number">3.6.2.</span> <span class="nav-text">Beans.xml</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码分析"><span class="nav-number">3.6.3.</span> <span class="nav-text">源码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-7-配置properties"><span class="nav-number">3.7.</span> <span class="nav-text">3.7 配置properties</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在src写个db-properties文件"><span class="nav-number">3.7.1.</span> <span class="nav-text">在src写个db.properties文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#beans-xml"><span class="nav-number">3.7.2.</span> <span class="nav-text">beans.xml</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+	<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="86" src="//music.163.com/outchain/player?type=2&id=38358214&auto=0&height=66">
+    </iframe>
+	</div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">凌枫</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.min.js"></script>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: false,
+        appId: '6dpTn64BlB3dEdcvG7RI4pMo-gzGzoHsz',
+        appKey: 'rIRTS8vIL6Jx02cXPihaHN4c',
+        placeholder: '别急，慢慢说',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "mtpW2sIlIHeJQk0FGq2ddMVQ-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "mtpW2sIlIHeJQk0FGq2ddMVQ-gzGzoHsz",
+                'X-LC-Key': "S8VWUb1LK61DctReez2JM8P1",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- 雪花特效 -->
+<script type="text/javascript">
+  var windowWidth = $(window).width();
+  if (windowWidth > 480) {
+    document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
+  }
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

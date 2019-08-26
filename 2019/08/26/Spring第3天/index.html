@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#fff">
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+  <script>
+  (function(i,s,o,g,r,a,m){i["DaoVoiceObject"]=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;a.charset="utf-8";m.parentNode.insertBefore(a,m)})(window,document,"script",('https:' == document.location.protocol ? 'https:' : 'http:') + "//widget.daovoice.io/widget/0f81ff2f.js","daovoice")
+  daovoice('init', {
+      app_id: "f10bbdc2"
+    });
+  daovoice('update');
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+  
+
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#fff">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+  <meta name="description" content="1 事务管理1.1 事务回顾事务简介一组业务ABCD操作，要么全部成功，要么全部不成功。 事务特性：ACIDØ 原子性：整体 【原子性是指事务包含的所有操作要么全部成功，要么全部失败】 Ø 一致性：数据 【一个事务执行之前和执行之后都必须处于一致性状态】 Ø 隔离性：并发 【对于任意两个并发的事务T1和T2，在事务T1看来，T2要么在T1开始之前就已经结束，要么在T1结束之后才开始，这样每个事务都">
+<meta name="keywords" content="Spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring第3天">
+<meta property="og:url" content="http://yoursite.com/2019/08/26/Spring第3天/index.html">
+<meta property="og:site_name" content="凌枫&#39;s Blog">
+<meta property="og:description" content="1 事务管理1.1 事务回顾事务简介一组业务ABCD操作，要么全部成功，要么全部不成功。 事务特性：ACIDØ 原子性：整体 【原子性是指事务包含的所有操作要么全部成功，要么全部失败】 Ø 一致性：数据 【一个事务执行之前和执行之后都必须处于一致性状态】 Ø 隔离性：并发 【对于任意两个并发的事务T1和T2，在事务T1看来，T2要么在T1开始之前就已经结束，要么在T1结束之后才开始，这样每个事务都">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps109.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps110.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps111.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps112.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps113.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps114.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps115.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps116.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps117.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps118.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps119.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps120.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps121.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps122.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps123.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps124.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps125.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps126.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps127.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps128.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps129.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps130.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps131.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps132.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps133.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps134.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps135.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps136.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps137.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps138.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps139.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps140.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps141.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps142.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps143.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps144.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps145.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps146.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps147.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps148.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps149.jpg">
+<meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps150.jpg">
+<meta property="og:updated_time" content="2019-08-26T11:53:52.289Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring第3天">
+<meta name="twitter:description" content="1 事务管理1.1 事务回顾事务简介一组业务ABCD操作，要么全部成功，要么全部不成功。 事务特性：ACIDØ 原子性：整体 【原子性是指事务包含的所有操作要么全部成功，要么全部失败】 Ø 一致性：数据 【一个事务执行之前和执行之后都必须处于一致性状态】 Ø 隔离性：并发 【对于任意两个并发的事务T1和T2，在事务T1看来，T2要么在T1开始之前就已经结束，要么在T1结束之后才开始，这样每个事务都">
+<meta name="twitter:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps109.jpg">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/08/26/Spring第3天/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Spring第3天 | 凌枫's Blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband">
+		<a href="https://github.com/lqgjava"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_left_red_aa0000.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1"></a>
+	</div>
+	
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">凌枫's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-futbol-o"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-reading">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/reading/" rel="section"><i class="menu-item-icon fa fa-fw fa-book"></i> <br>读书/观影</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/26/Spring第3天/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="凌枫">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/mao.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="凌枫's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring第3天
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-26 19:52:11 / 修改时间：19:53:52" itemprop="dateCreated datePublished" datetime="2019-08-26T19:52:11+08:00">2019-08-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/后台/" itemprop="url" rel="index"><span itemprop="name">后台</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/08/26/Spring第3天/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/08/26/Spring第3天/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2019/08/26/Spring第3天/" class="leancloud_visitors" data-flag-title="Spring第3天">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数：</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-事务管理"><a href="#1-事务管理" class="headerlink" title="1 事务管理"></a><strong>1</strong> <strong>事务管理</strong></h1><h2 id="1-1-事务回顾"><a href="#1-1-事务回顾" class="headerlink" title="1.1 事务回顾"></a><strong>1.1 事务回顾</strong></h2><h3 id="事务简介"><a href="#事务简介" class="headerlink" title="事务简介"></a><strong>事务简介</strong></h3><p>一组业务ABCD操作，要么全部成功，要么全部不成功。</p>
+<h3 id="事务特性：ACID"><a href="#事务特性：ACID" class="headerlink" title="事务特性：ACID"></a><strong>事务特性：ACID</strong></h3><p>Ø 原子性：整体 【原子性是指事务包含的所有操作要么全部成功，要么全部失败】</p>
+<p>Ø 一致性：数据 【一个事务执行之前和执行之后都必须处于一致性状态】</p>
+<p>Ø 隔离性：并发 【对于任意两个并发的事务T1和T2，在事务T1看来，T2要么在T1开始之前就已经结束，要么在T1结束之后才开始，这样每个事务都感觉不到有其他事务在并发地执行。】</p>
+<p>Ø 持久性：结果 【持久性是指一个事务一旦被提交了，那么对数据库中的数据的改变就是永久性的】</p>
+<h3 id="隔离问题"><a href="#隔离问题" class="headerlink" title="隔离问题"></a><strong>隔离问题</strong></h3><p>Ø 脏读：一个事务读到另一个事务未提交的内容<strong>【读取未提交内容】</strong></p>
+<p>在该隔离级别，所有事务都可以看到其他未提交事务的执行结果。<strong>本隔离级别很少用于实际应用，因为它的性能也不比其他级别好多少。</strong></p>
+<p>Ø 不可重复读：一个事务读到另一个事务已提交的内容（insert）<strong>【读取提交内容】</strong></p>
+<p>这是大多数数据库系统的默认隔离级别（但不是MySQL默认的）。它满足了隔离的简单定义：一个事务只能看见已经提交事务所做的改变。</p>
+<p>Ø 虚读（幻读）：一个事务读到另一个事务已提交的内容（update）</p>
+<p>这是<strong>MySQL的默认事务隔离级别</strong>，它确保同一事务的多个实例在并发读取数据时，会看到同样的数据行。不过理论上，这会导致另一个棘手的问题：幻读 （Phantom Read）。简单的说，幻读指当用户读取某一范围的数据行时，另一个事务又在该范围内插入了新行，当用户再读取该范围的数据行时，会发现有新的“幻影” 行。</p>
+<p>Ø Serializable（可串行化）</p>
+<p>这是最高的隔离级别，它通过强制事务排序，使之不可能相互冲突，从而解决幻读问题。简言之，它是在每个读的数据行上加上共享锁。在这个级别，可能导致大量的超时现象和锁竞争。</p>
+<h3 id="隔离级别–解决问题"><a href="#隔离级别–解决问题" class="headerlink" title="隔离级别–解决问题"></a><strong>隔离级别–解决问题</strong></h3><p>Ø read uncommittd，读未提交。存在3个问题。</p>
+<p>Ø read committed，读已提交。解决：脏读。存在2个问题。</p>
+<p>Ø repeatable read ，可重复读。解决：脏读、不可重复读。存在1个问题。</p>
+<p>Ø serializable，串行化。单事务。没有问题。</p>
+<p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps109.jpg" alt="img"> </p>
+<h3 id="mysql-事务操作–简单"><a href="#mysql-事务操作–简单" class="headerlink" title="mysql 事务操作–简单"></a><strong>mysql 事务操作–简单</strong></h3><p>ABCD 一个事务Connection conn = null;try{  //1 获得连接  conn = …;  //2 开启事务  conn.setAutoCommit(false);  A  B  C  D  //3 提交事务  conn.commit();} catche(){  //4 回滚事务  conn.rollback();}</p>
+<h3 id="mysql-事务操作–Savepoint"><a href="#mysql-事务操作–Savepoint" class="headerlink" title="mysql 事务操作–Savepoint"></a><strong>mysql 事务操作–Savepoint</strong></h3><p>需求：AB（必须），CD（可选） Connection conn = null;Savepoint savepoint = null;  //保存点，记录操作的当前位置，之后可以回滚到指定的位置。（可以回滚一部分）try{  //1 获得连接  conn = …;  //2 开启事务  conn.setAutoCommit(false);  A  B  savepoint = conn.setSavepoint();  C  D  //3 提交事务  conn.commit();} catche(){  if(savepoint != null){   //CD异常     // 回滚到CD之前     conn.rollback(savepoint);     // 提交AB     conn.commit();  } else{   //AB异常     // 回滚AB     conn.rollback();  }}</p>
+<h2 id="1-2-Spring事务管理介绍"><a href="#1-2-Spring事务管理介绍" class="headerlink" title="1.2 Spring事务管理介绍"></a><strong>1.2 Spring事务管理介绍</strong></h2><h3 id="1-2-1-Spring提供的事务jar包"><a href="#1-2-1-Spring提供的事务jar包" class="headerlink" title="1.2.1 Spring提供的事务jar包"></a><strong>1.2.1 Spring提供的事务jar包</strong></h3><p>transaction = tx</p>
+<p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps110.jpg" alt="img"> </p>
+<h3 id="1-2-2-Jar中的三个顶级接口"><a href="#1-2-2-Jar中的三个顶级接口" class="headerlink" title="1.2.2 Jar中的三个顶级接口"></a><strong>1.2.2 Jar中的三个顶级接口</strong></h3><table>
+<thead>
+<tr>
+<th><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps111.jpg" alt="img"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>PlatformTransactionManager**</strong>：<strong>平台事务管理器，spring要管理事务，必须使用事务管理器,进行事务配置时，必须</strong>配置事务管理器**</td>
+</tr>
+<tr>
+<td><strong>TransactionDefinition：</strong>事务详情（事务定义、事务属性），spring用于确定事务具体详情，例如：隔离级别、是否只读、超时时间 等进行事务配置时，<strong>必须配置详情</strong>。spring将配置项封装到该对象实例。</td>
+</tr>
+<tr>
+<td><strong>TransactionStatus：</strong>事务状态，spring用于记录当前事务运行状态。例如：是否有保存点，事务是否完成。spring底层根据状态进行相应操作。</td>
+</tr>
+</tbody></table>
+<h3 id="1-2-3-PlatformTransactionManager-事务管理器"><a href="#1-2-3-PlatformTransactionManager-事务管理器" class="headerlink" title="1.2.3 PlatformTransactionManager 事务管理器"></a><strong>1.2.3</strong> <strong>PlatformTransactionManager</strong> <strong>事务管理器</strong></h3><h4 id="先导入两个包"><a href="#先导入两个包" class="headerlink" title="先导入两个包"></a><strong>先导入两个包</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps112.jpg" alt="img"> </p>
+<h4 id="常用的两个事务管理器"><a href="#常用的两个事务管理器" class="headerlink" title="常用的两个事务管理器"></a><strong>常用的两个事务管理器</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps113.jpg" alt="img"> </p>
+<h3 id="1-2-4-TransactionStatus-事务状态"><a href="#1-2-4-TransactionStatus-事务状态" class="headerlink" title="1.2.4 TransactionStatus 事务状态"></a><strong>1.2.4</strong> <strong>TransactionStatus</strong> <strong>事务状态</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps114.jpg" alt="img"> </p>
+<h3 id="1-2-5-TransactionDefinition"><a href="#1-2-5-TransactionDefinition" class="headerlink" title="1.2.5 TransactionDefinition"></a><strong>1.2.5</strong> <strong>TransactionDefinition</strong></h3><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps115.jpg" alt="img"> </p>
+<p><strong>传播行为：在两个业务之间如何共享事务</strong></p>
+<table>
+<thead>
+<tr>
+<th><strong>PROPAGATION_REQUIRED</strong>required , 必须  【默认值】</th>
+<th>支持当前事务，A如果有事务，B将使用该事务。如果A没有事务，B将创建一个新的事务。</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>PROPAGATION_SUPPORTS</strong>supports ，支持</td>
+<td>支持当前事务，A如果有事务，B将使用该事务。如果A没有事务，B将以非事务执行。</td>
+</tr>
+<tr>
+<td><strong>PROPAGATION_MANDATORY</strong>mandatory ，强制</td>
+<td>支持当前事务，A如果有事务，B将使用该事务。如果A没有事务，B将抛异常。</td>
+</tr>
+<tr>
+<td><strong>PROPAGATION_REQUIRES_NEW</strong> requires_new ，必须新的</td>
+<td>如果A有事务，将A的事务挂起，B创建一个新的事务如果A没有事务，B创建一个新的事务</td>
+</tr>
+<tr>
+<td><strong>PROPAGATION_NOT_SUPPORTED</strong>not_supported ,不支持</td>
+<td>如果A有事务，将A的事务挂起，B将以非事务执行如果A没有事务，B将以非事务执行</td>
+</tr>
+<tr>
+<td><strong>PROPAGATION_NEVER</strong>never，从不</td>
+<td>如果A有事务，B将抛异常如果A没有事务，B将以非事务执行</td>
+</tr>
+<tr>
+<td><strong>PROPAGATION_NESTED</strong>nested ，嵌套</td>
+<td>A和B底层采用保存点机制，形成嵌套事务。</td>
+</tr>
+</tbody></table>
+<p>掌握：PROPAGATION_REQUIRED、PROPAGATION_REQUIRES_NEW、PROPAGATION_NESTED </p>
+<h2 id="1-3-案例：转帐"><a href="#1-3-案例：转帐" class="headerlink" title="1.3 案例：转帐"></a><strong>1.3 案例：转帐</strong></h2><p>​    </p>
+<h3 id="1-3-1-环境搭建"><a href="#1-3-1-环境搭建" class="headerlink" title="1.3.1 环境搭建"></a><strong>1.3.1 环境搭建</strong></h3><h4 id="创建数据库表"><a href="#创建数据库表" class="headerlink" title="创建数据库表"></a><strong>创建数据库表</strong></h4><p>create database spring_day3;use spring_day3;create table account(  id int primary key auto_increment,  username varchar(50),  money int);insert into account(username,money) values(‘jack’,’10000’);insert into account(username,money) values(‘rose’,’10000’);</p>
+<h4 id="导入jar包"><a href="#导入jar包" class="headerlink" title="导入jar包"></a><strong>导入jar包</strong></h4><p>l 核心：4+1</p>
+<p>l aop ： 4 (aop联盟、spring aop、aspectj规范、spring aspect)</p>
+<p>l 数据库：2  （jdbc/tx）</p>
+<p>l 驱动：mysql</p>
+<p>l 连接池：c3p0</p>
+<p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps116.jpg" alt="img"> </p>
+<h4 id="Dao层"><a href="#Dao层" class="headerlink" title="Dao层"></a><strong>Dao层</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps117.jpg" alt="img"> </p>
+<h4 id="Service层"><a href="#Service层" class="headerlink" title="Service层"></a><strong>Service层</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps118.jpg" alt="img"> </p>
+<h4 id="Spring的配置"><a href="#Spring的配置" class="headerlink" title="Spring的配置"></a><strong>Spring的配置</strong></h4><p>配置c3p0数据源-&gt;dao -&gt; service</p>
+<p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps119.jpg" alt="img"> </p>
+<h4 id="测试转帐"><a href="#测试转帐" class="headerlink" title="测试转帐"></a><strong>测试转帐</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps120.jpg" alt="img"> </p>
+<h3 id="1-3-2-手动管理事务【了解】"><a href="#1-3-2-手动管理事务【了解】" class="headerlink" title="1.3.2 手动管理事务【了解】"></a><strong>1.3.2 手动管理事务【了解】</strong></h3><p><strong>spring底层使用 TransactionTemplate 事务模板进行操作。</strong></p>
+<p><strong>操作</strong></p>
+<p>1.service 需要获得 TransactionTemplate </p>
+<p>2.spring 配置模板，并注入给service</p>
+<p>3.模板需要注入事务管理器</p>
+<p>4.配置事务管理器：DataSourceTransactionManager ，需要注入DataSource</p>
+<p><strong>了解底层即可，因为以后都是通过aop来配置事务</strong></p>
+<h4 id="修改Service"><a href="#修改Service" class="headerlink" title="修改Service"></a><strong>修改Service</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps121.jpg" alt="img"> </p>
+<h4 id="修改spring的配置文件"><a href="#修改spring的配置文件" class="headerlink" title="修改spring的配置文件"></a><strong>修改spring的配置文件</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps122.jpg" alt="img"> </p>
+<h3 id="1-3-3-工厂bean生成代理：半自动"><a href="#1-3-3-工厂bean生成代理：半自动" class="headerlink" title="1.3.3 工厂bean生成代理：半自动"></a><strong>1.3.3 工厂bean生成代理：半自动</strong></h3><p>Spring提供 管理事务的代理工厂bean <strong>TransactionProxyFactoryBean</strong></p>
+<h4 id="修改spring配置文件"><a href="#修改spring配置文件" class="headerlink" title="修改spring配置文件"></a><strong>修改spring配置文件</strong></h4><p>transactionAttributes:事务详情prop.key ：确定哪些方法使用当前事务配置    prop.text:用于配置事务详情    格式：PROPAGATION,ISOLATION,readOnly,-Exception,+Exception    传播行为         隔离级别          是否只读    异常回滚          异常提交</p>
+<p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps123.jpg" alt="img"> </p>
+<h4 id="测试："><a href="#测试：" class="headerlink" title="测试："></a><strong>测试：</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps124.jpg" alt="img"> </p>
+<h3 id="1-3-4-基本AOP的事务配置【掌握】"><a href="#1-3-4-基本AOP的事务配置【掌握】" class="headerlink" title="1.3.4 基本AOP的事务配置【掌握】"></a><strong>1.3.4 基本AOP的事务配置【掌握】</strong></h3><h4 id="Spring的配置文件"><a href="#Spring的配置文件" class="headerlink" title="Spring的配置文件"></a><strong>Spring的配置文件</strong></h4><table>
+<thead>
+<tr>
+<th><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps125.jpg" alt="img"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps126.jpg" alt="img"></td>
+</tr>
+</tbody></table>
+<h4 id="测试同上"><a href="#测试同上" class="headerlink" title="测试同上"></a><strong>测试同上</strong></h4><h3 id="1-3-5-基本于注解的事务"><a href="#1-3-5-基本于注解的事务" class="headerlink" title="1.3.5 基本于注解的事务"></a><strong>1.3.5 基本于注解的事务</strong></h3><h4 id="spring配置"><a href="#spring配置" class="headerlink" title="spring配置"></a><strong>spring配置</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps127.jpg" alt="img"> </p>
+<p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps128.jpg" alt="img"> </p>
+<h3 id="1-3-5-整合Junit"><a href="#1-3-5-整合Junit" class="headerlink" title="1.3.5 整合Junit"></a><strong>1.3.5 整合Junit</strong></h3><p>目的：少写一些代码<img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps129.jpg" alt="img"></p>
+<p>导入一个spring-test包</p>
+<p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps130.jpg" alt="img"> </p>
+<h1 id="2-SSH整合"><a href="#2-SSH整合" class="headerlink" title="2. SSH整合"></a><strong>2.</strong> <strong>SSH整合</strong></h1><h2 id="2-1-web-整合spring"><a href="#2-1-web-整合spring" class="headerlink" title="2.1 web 整合spring"></a><strong>2.1 web 整合spring</strong></h2><p>配置tomcat加载spring的配置文件</p>
+<p>第一步：需要添加<img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps131.jpg" alt="img"></p>
+<p>第二步：在web.xml配置spring的监听</p>
+<table>
+<thead>
+<tr>
+<th><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps132.jpg" alt="img"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出现下面的错误是配置文件加载位置不对，在web.xml改成classpath目录下</td>
+</tr>
+<tr>
+<td><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps133.jpg" alt="img"></td>
+</tr>
+<tr>
+<td><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps134.jpg" alt="img"></td>
+</tr>
+</tbody></table>
+<p>第三步：创建Servlet获取Spring的应用上下文件ApplicationContext</p>
+<p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps135.jpg" alt="img"> </p>
+<h2 id="2-2-web整合struts-hibernate-spring"><a href="#2-2-web整合struts-hibernate-spring" class="headerlink" title="2.2 web整合struts+hibernate+spring"></a><strong>2.2 web整合struts+hibernate+spring</strong></h2><h3 id="整合版本"><a href="#整合版本" class="headerlink" title="整合版本"></a><strong>整合版本</strong></h3><p><strong>struts-2.3.33-all</strong></p>
+<p><strong>spring-framework-3.0.2.RELEASE</strong></p>
+<p><strong>hibernate-distribution-3.6.10.Final-dist</strong></p>
+<h3 id="第一步：jar包整合"><a href="#第一步：jar包整合" class="headerlink" title="第一步：jar包整合"></a><strong>第一步：jar包整合</strong></h3><h4 id="Struts的jar包"><a href="#Struts的jar包" class="headerlink" title="Struts的jar包"></a><strong>Struts的jar包</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps136.jpg" alt="img"> </p>
+<h4 id="Spring的jar包"><a href="#Spring的jar包" class="headerlink" title="Spring的jar包"></a><strong>Spring的jar包</strong></h4><p>基础：4+1 ， beans、core、context、expression ， commons-logging (struts已经导入)AOP：aop联盟(aopalliance)、spring aop 、aspect规范（aspect.weaver）、spring aspectdb：jdbc、tx测试：testweb开发：spring web驱动：mysql连接池：c3p0整合hibernate：spring orm</p>
+<h4 id="Hibernate的jar包"><a href="#Hibernate的jar包" class="headerlink" title="Hibernate的jar包"></a><strong>Hibernate的jar包</strong></h4><table>
+<thead>
+<tr>
+<th>核心包<img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps137.jpg" alt="img"></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps138.jpg" alt="img"></td>
+</tr>
+<tr>
+<td>required包下的介绍<img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps139.jpg" alt="img"> <strong>jpa用于注解开发@Entity @Id</strong></td>
+</tr>
+</tbody></table>
+<h4 id="整合log4j"><a href="#整合log4j" class="headerlink" title="整合log4j"></a><strong>整合log4j</strong></h4><p>导入 log4j…jar (struts已经导入)</p>
+<p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps140.jpg" alt="img"> </p>
+<p>整合（过渡）：slf4j-log4j12-1.7.2.jar</p>
+<p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps141.jpg" alt="img"> </p>
+<h4 id="二级缓存"><a href="#二级缓存" class="headerlink" title="二级缓存"></a><strong>二级缓存</strong></h4><p>Commons-loggin.jar已经存在</p>
+<p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps142.jpg" alt="img"> </p>
+<h4 id="整合包"><a href="#整合包" class="headerlink" title="整合包"></a><strong>整合包</strong></h4><p>spring整合hibernate： spring orm</p>
+<p>struts 整合spring：struts2-spring-plugin-2.3.15.3.jar</p>
+<h4 id="删除重复jar包"><a href="#删除重复jar包" class="headerlink" title="删除重复jar包"></a><strong>删除重复jar包</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps143.jpg" alt="img"> </p>
+<h3 id="第二步：spring整合hibernate的单元测试"><a href="#第二步：spring整合hibernate的单元测试" class="headerlink" title="第二步：spring整合hibernate的单元测试"></a><strong>第二步：spring整合hibernate的单元测试</strong></h3><h4 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a><strong>创建表</strong></h4><p>create table t_user(  id int primary key auto_increment,  username varchar(50),  password varchar(32),  age int );</p>
+<h4 id="po类和映射文件"><a href="#po类和映射文件" class="headerlink" title="po类和映射文件"></a><strong>po类和映射文件</strong></h4><table>
+<thead>
+<tr>
+<th><strong>public</strong> <strong>class</strong> User {    <strong>private</strong> Integer id;    <strong>private</strong> String username;    <strong>private</strong> String password;    <strong>private</strong> Integer age;</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><?xml version=*"1.0"* encoding=*"UTF-8"*?><!DOCTYPE hibernate-mapping PUBLIC     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"><hibernate-mapping>    &lt;class name=*”com.gyf.borrowsys.domain.User”* table=*”t_user”<em>&gt;        &lt;id name=</em>“id”<em>&gt;            &lt;generator class=</em>“native”<em>&gt;                        &lt;property name=</em>“username”<em>&gt;        &lt;property name=</em>“password”<em>&gt;        &lt;property name=</em>“age”*&gt;    </hibernate-mapping></td>
+</tr>
+</tbody></table>
+<h4 id="dao"><a href="#dao" class="headerlink" title="dao"></a><strong>dao</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps144.jpg" alt="img"> </p>
+<h4 id="Service"><a href="#Service" class="headerlink" title="Service"></a><strong>Service</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps145.jpg" alt="img"> </p>
+<h4 id="hibernate-cfg-xml"><a href="#hibernate-cfg-xml" class="headerlink" title="hibernate.cfg.xml"></a><strong>hibernate.cfg.xml</strong></h4><!DOCTYPE hibernate-configuration PUBLIC    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd"><p> <hibernate-configuration>    <session-factory>        <!-- 1、配置数据库连接的4个参数 -->        &lt;property name=*”hibernate.connection.driver_class”<em>&gt;com.mysql.jdbc.Driver        &lt;property name=</em>“hibernate.connection.url”<em>&gt;jdbc:mysql://localhost:3306/web_ssh        &lt;property name=</em>“hibernate.connection.username”<em>&gt;root        &lt;property name=</em>“hibernate.connection.password”<em>&gt;123456                <!-- 2、是否显示sql语句 -->        &lt;property name=</em>“show_sql”<em>&gt;true                <!-- 3、是否格式化sql语句 -->        &lt;property name=</em>“format_sql”<em>&gt;true                <!-- 4、Hiberante映射与DDl语句的策略 update【常用】: 如果数据库没有表，会创建表         hibernate.-->        &lt;property name=</em>“hibernate.hbm2ddl.auto”<em>&gt;update            &lt;property name=</em>“hibernate.dialect”<em>&gt;org.hibernate.dialect.MySQL5Dialect                     <!-- 配置JavaBean与表的映射文件 -->        &lt;mapping resource=</em>“com/gyf/borrowsys/domain/User.hbm.xml”*/&gt;            </session-factory></hibernate-configuration></p>
+<h4 id="applicationContext-xml"><a href="#applicationContext-xml" class="headerlink" title="applicationContext.xml"></a><strong>applicationContext.xml</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps146.jpg" alt="img"> </p>
+<h4 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a><strong>单元测试</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps147.jpg" alt="img"> </p>
+<h4 id="配置Hibrenate的事务"><a href="#配置Hibrenate的事务" class="headerlink" title="配置Hibrenate的事务"></a><strong>配置Hibrenate的事务</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps148.jpg" alt="img"> </p>
+<h4 id="简化：去除hibernate-cfg-xml文件"><a href="#简化：去除hibernate-cfg-xml文件" class="headerlink" title="简化：去除hibernate.cfg.xml文件"></a><strong>简化：去除hibernate.cfg.xml文件</strong></h4><!-- dataSource -->    <bean id="*" datasource"*" class="*" com.mchange.v2.c3p0.combopooleddatasource"*">        <property name="*" driverclass"*" value="*" com.mysql.jdbc.driver"*"></property>        <property name="*" jdbcurl"*" value="*" jdbc:mysql: web_ssh"*"></property>        <property name="*" user"*" value="*" root"*"></property>        <property name="*" password"*" value="*" 12345**6**"*"></property>    </bean>        <!-- sessionFactory -->    <bean id="*" sessionfactory"*" class="*" org.springframework.orm.hibernate3.localsessionfactorybean"*">        <!--configLocation:hibernate配置文件的位置  -->        <!-- <property name="configLocation" value="classpath:hibernate.cfg.xml"></property> -->        <property name="*" datasource"*" ref="*"></property>        <property name="*" hibernateproperties"*">            <props>                <prop key="*" hibernate.dialect"*">org.hibernate.dialect.MySQL5Dialect</prop>                <prop key="*" hibernate.show_sql"*">true</prop>                <prop key="*" hibernate.format_sql"*">true</prop>                <prop key="*" hibernate.hbm2ddl.auto"*">update</prop>                <prop key="*" hibernate.current_session_context_class"*">thread</prop>            </props>        </property>        <!-- 映射文件位置 -->        <property name="*" mappinglocations"*" value="*" classpath:com gyf borrowsys domain \*.hbm.xml"*"></property>    </bean>
+
+
+
+<h3 id="第三步：spring整合struts"><a href="#第三步：spring整合struts" class="headerlink" title="第三步：spring整合struts"></a><strong>第三步：spring整合struts</strong></h3><p>编写action类，并将其配置给spring ，spring可以注入service</p>
+<p>编写struts.xml </p>
+<p>表单jsp页面</p>
+<h4 id="web-xml-配置"><a href="#web-xml-配置" class="headerlink" title="web.xml 配置"></a><strong>web.xml 配置</strong></h4><p>1.确定配置文件contextConfigLocation</p>
+<p>2.配置监听器 ContextLoaderListener</p>
+<p>3.配置前端控制器 StrutsPrepareAndExecuteFitler</p>
+ <!-- 加载spring的配置文件，初始化相关的bean -->  <context-param>    <param-name>contextConfigLocation</param-name>    <param-value>classpath:applicationContext.xml</param-value>  </context-param>  <listener>    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  </listener>    <!-- struts的过滤器 -->  <filter>      <filter-name>struts2</filter-name>      <filter-class>org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter</filter-class>  </filter>    <filter-mapping>      <filter-name>struts2</filter-name>      <url-pattern>/*</url-pattern>  </filter-mapping>
+
+
+
+<h4 id="action和spring配置文件"><a href="#action和spring配置文件" class="headerlink" title="action和spring配置文件"></a><strong>action和spring配置文件</strong></h4><table>
+<thead>
+<tr>
+<th><strong>action中service默认会根据名称注入**</strong>默认情况下框架使用的自动装配策略是name，也就是说框架会去 Spring中寻找与action属性名字相同的bean**</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps149.jpg" alt="img"></td>
+</tr>
+</tbody></table>
+<h4 id="actoin对象由spring创建"><a href="#actoin对象由spring创建" class="headerlink" title="actoin对象由spring创建"></a><strong>actoin对象由spring创建</strong></h4><p><img src="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps150.jpg" alt="img"></p>
+
+      
+    </div>
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    <div>
+          
+            
+          
+    </div>
+    
+
+    
+       
+    
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.jpg" alt="博主 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/zfb.jpg" alt="博主 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" rel="tag"><i class="fa fa-tag"></i>Spring</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/26/MyBatis第1天/" rel="prev" title="MyBatis第1天">
+                 <i class="fa fa-chevron-left"></i> MyBatis第1天
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/26/Spring第2天/" rel="next" title="Spring第2天">
+                Spring第2天 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image" src="/images/mao.jpg" alt="凌枫">
+            </a>
+            
+              <p class="site-author-name" itemprop="name">凌枫</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">46</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/lqgjava" title="GitHub &rarr; https://github.com/lqgjava" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="mailto:seriouszyx@gmail.com" title="E-Mail &rarr; mailto:seriouszyx@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://plus.google.com/seriouszyx" title="Google &rarr; https://plus.google.com/seriouszyx" rel="noopener" target="_blank"><i class="fa fa-fw fa-google"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/seriouszyx1" title="Twitter &rarr; https://twitter.com/seriouszyx1" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/6373109128/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" title="Weibo &rarr; https://weibo.com/6373109128/profile?rightmod=1&wvr=6&mod=personinfo&is_all=1" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://www.zhihu.com/people/ling-feng-zero/activities" title="zhihu &rarr; https://www.zhihu.com/people/ling-feng-zero/activities" rel="noopener" target="_blank"><i class="fa fa-fw fa-zhihu"></i></a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                  
+                    
+                  
+                  <a href="https://blog.csdn.net/qq_43674132" title="CSDN &rarr; https://blog.csdn.net/qq_43674132" rel="noopener" target="_blank"><i class="fa fa-fw fa-csdn"></i></a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.csdn.net/qq_43674132" title="https://blog.csdn.net/qq_43674132" rel="noopener" target="_blank">我的个人简历</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-事务管理"><span class="nav-number">1.</span> <span class="nav-text">1 事务管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-事务回顾"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 事务回顾</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#事务简介"><span class="nav-number">1.1.1.</span> <span class="nav-text">事务简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事务特性：ACID"><span class="nav-number">1.1.2.</span> <span class="nav-text">事务特性：ACID</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隔离问题"><span class="nav-number">1.1.3.</span> <span class="nav-text">隔离问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#隔离级别–解决问题"><span class="nav-number">1.1.4.</span> <span class="nav-text">隔离级别–解决问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql-事务操作–简单"><span class="nav-number">1.1.5.</span> <span class="nav-text">mysql 事务操作–简单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#mysql-事务操作–Savepoint"><span class="nav-number">1.1.6.</span> <span class="nav-text">mysql 事务操作–Savepoint</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Spring事务管理介绍"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 Spring事务管理介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-1-Spring提供的事务jar包"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.2.1 Spring提供的事务jar包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-2-Jar中的三个顶级接口"><span class="nav-number">1.2.2.</span> <span class="nav-text">1.2.2 Jar中的三个顶级接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-3-PlatformTransactionManager-事务管理器"><span class="nav-number">1.2.3.</span> <span class="nav-text">1.2.3 PlatformTransactionManager 事务管理器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#先导入两个包"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">先导入两个包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用的两个事务管理器"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">常用的两个事务管理器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-4-TransactionStatus-事务状态"><span class="nav-number">1.2.4.</span> <span class="nav-text">1.2.4 TransactionStatus 事务状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-5-TransactionDefinition"><span class="nav-number">1.2.5.</span> <span class="nav-text">1.2.5 TransactionDefinition</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-案例：转帐"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 案例：转帐</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-1-环境搭建"><span class="nav-number">1.3.1.</span> <span class="nav-text">1.3.1 环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建数据库表"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">创建数据库表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#导入jar包"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">导入jar包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dao层"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">Dao层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Service层"><span class="nav-number">1.3.1.4.</span> <span class="nav-text">Service层</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring的配置"><span class="nav-number">1.3.1.5.</span> <span class="nav-text">Spring的配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试转帐"><span class="nav-number">1.3.1.6.</span> <span class="nav-text">测试转帐</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-2-手动管理事务【了解】"><span class="nav-number">1.3.2.</span> <span class="nav-text">1.3.2 手动管理事务【了解】</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改Service"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">修改Service</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改spring的配置文件"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">修改spring的配置文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-3-工厂bean生成代理：半自动"><span class="nav-number">1.3.3.</span> <span class="nav-text">1.3.3 工厂bean生成代理：半自动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改spring配置文件"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">修改spring配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试："><span class="nav-number">1.3.3.2.</span> <span class="nav-text">测试：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-4-基本AOP的事务配置【掌握】"><span class="nav-number">1.3.4.</span> <span class="nav-text">1.3.4 基本AOP的事务配置【掌握】</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring的配置文件"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">Spring的配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试同上"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">测试同上</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-5-基本于注解的事务"><span class="nav-number">1.3.5.</span> <span class="nav-text">1.3.5 基本于注解的事务</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#spring配置"><span class="nav-number">1.3.5.1.</span> <span class="nav-text">spring配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-3-5-整合Junit"><span class="nav-number">1.3.6.</span> <span class="nav-text">1.3.5 整合Junit</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-SSH整合"><span class="nav-number">2.</span> <span class="nav-text">2. SSH整合</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-web-整合spring"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 web 整合spring</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-web整合struts-hibernate-spring"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 web整合struts+hibernate+spring</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#整合版本"><span class="nav-number">2.2.1.</span> <span class="nav-text">整合版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：jar包整合"><span class="nav-number">2.2.2.</span> <span class="nav-text">第一步：jar包整合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Struts的jar包"><span class="nav-number">2.2.2.1.</span> <span class="nav-text">Struts的jar包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spring的jar包"><span class="nav-number">2.2.2.2.</span> <span class="nav-text">Spring的jar包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Hibernate的jar包"><span class="nav-number">2.2.2.3.</span> <span class="nav-text">Hibernate的jar包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#整合log4j"><span class="nav-number">2.2.2.4.</span> <span class="nav-text">整合log4j</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二级缓存"><span class="nav-number">2.2.2.5.</span> <span class="nav-text">二级缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#整合包"><span class="nav-number">2.2.2.6.</span> <span class="nav-text">整合包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#删除重复jar包"><span class="nav-number">2.2.2.7.</span> <span class="nav-text">删除重复jar包</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：spring整合hibernate的单元测试"><span class="nav-number">2.2.3.</span> <span class="nav-text">第二步：spring整合hibernate的单元测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建表"><span class="nav-number">2.2.3.1.</span> <span class="nav-text">创建表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#po类和映射文件"><span class="nav-number">2.2.3.2.</span> <span class="nav-text">po类和映射文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dao"><span class="nav-number">2.2.3.3.</span> <span class="nav-text">dao</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Service"><span class="nav-number">2.2.3.4.</span> <span class="nav-text">Service</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hibernate-cfg-xml"><span class="nav-number">2.2.3.5.</span> <span class="nav-text">hibernate.cfg.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#applicationContext-xml"><span class="nav-number">2.2.3.6.</span> <span class="nav-text">applicationContext.xml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单元测试"><span class="nav-number">2.2.3.7.</span> <span class="nav-text">单元测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置Hibrenate的事务"><span class="nav-number">2.2.3.8.</span> <span class="nav-text">配置Hibrenate的事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#简化：去除hibernate-cfg-xml文件"><span class="nav-number">2.2.3.9.</span> <span class="nav-text">简化：去除hibernate.cfg.xml文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：spring整合struts"><span class="nav-number">2.2.4.</span> <span class="nav-text">第三步：spring整合struts</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#web-xml-配置"><span class="nav-number">2.2.4.1.</span> <span class="nav-text">web.xml 配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#action和spring配置文件"><span class="nav-number">2.2.4.2.</span> <span class="nav-text">action和spring配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#actoin对象由spring创建"><span class="nav-number">2.2.4.3.</span> <span class="nav-text">actoin对象由spring创建</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+	<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="86" src="//music.163.com/outchain/player?type=2&id=38358214&auto=0&height=66">
+    </iframe>
+	</div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">凌枫</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  <script id="ribbon" size="300" alpha="0.6" zindex="-1" src="/lib/canvas-ribbon/canvas-ribbon.min.js"></script>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.2.1/velocity.ui.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/three-waves.min.js"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  
+  
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: true,
+        notify: false,
+        appId: '6dpTn64BlB3dEdcvG7RI4pMo-gzGzoHsz',
+        appKey: 'rIRTS8vIL6Jx02cXPihaHN4c',
+        placeholder: '别急，慢慢说',
+        avatar:'mm',
+        meta:guest,
+        pageSize:'10' || 10,
+        visitor: false
+    });
+  </script>
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+  <script>
+    
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+
+      Counter('get', '/classes/Counter', { where: JSON.stringify({ url }) })
+        .done(function ({ results }) {
+          if (results.length > 0) {
+            var counter = results[0];
+            
+            Counter('put', `/classes/Counter/${counter.objectId}`, JSON.stringify({ time: { "__op":"Increment", "amount":1 } }))
+            
+            .done(function () {
+                  var $element = $(document.getElementById(url));
+                  $element.find('.leancloud-visitors-count').text(counter.time + 1);
+            })
+            
+            .fail(function ({ responseJSON }) {
+                console.log('Failed to save Visitor num, with error message: ' + responseJSON.error);
+            })
+          } else {
+            
+              var $element = $(document.getElementById(url));
+              $element.find('.leancloud-visitors-count').text('Counter not initialized! See more at console err msg.');
+              console.error('ATTENTION! LeanCloud counter has security bug, see here how to solve it: https://github.com/theme-next/hexo-leancloud-counter-security. \n But you also can use LeanCloud without security, by set \'security\' option to \'false\'.');
+            
+          }
+        })
+      .fail(function ({ responseJSON }) {
+        console.log('LeanCloud Counter Error:' + responseJSON.code + " " + responseJSON.error);
+      });
+    }
+    
+
+    $(function() {
+      $.get('https://app-router.leancloud.cn/2/route?appId=' + "mtpW2sIlIHeJQk0FGq2ddMVQ-gzGzoHsz")
+        .done(function ({ api_server }) {
+          var Counter = function (method, url, data) {
+            return $.ajax({
+              method: method,
+              url: `https://${api_server}/1.1${url}`,
+              headers: {
+                'X-LC-Id': "mtpW2sIlIHeJQk0FGq2ddMVQ-gzGzoHsz",
+                'X-LC-Key': "S8VWUb1LK61DctReez2JM8P1",
+                'Content-Type': 'application/json',
+              },
+              data: data,
+            });
+          };
+          
+          addCount(Counter);
+          
+        })
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
+<!-- 雪花特效 -->
+<script type="text/javascript">
+  var windowWidth = $(window).width();
+  if (windowWidth > 480) {
+    document.write('<script type="text/javascript" src="/js/src/snow.js"><\/script>');
+  }
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
