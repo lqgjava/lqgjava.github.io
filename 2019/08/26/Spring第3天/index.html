@@ -188,14 +188,13 @@
         }
     })();
 </script>
-  <meta name="description" content="1 事务管理1.1 事务回顾事务简介一组业务ABCD操作，要么全部成功，要么全部不成功。 事务特性：ACIDØ 原子性：整体 【原子性是指事务包含的所有操作要么全部成功，要么全部失败】 Ø 一致性：数据 【一个事务执行之前和执行之后都必须处于一致性状态】 Ø 隔离性：并发 【对于任意两个并发的事务T1和T2，在事务T1看来，T2要么在T1开始之前就已经结束，要么在T1结束之后才开始，这样每个事务都">
-<meta name="keywords" content="Spring">
+  <meta name="keywords" content="Spring">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring第3天">
 <meta property="og:url" content="http://yoursite.com/2019/08/26/Spring第3天/index.html">
 <meta property="og:site_name" content="凌枫&#39;s Blog">
-<meta property="og:description" content="1 事务管理1.1 事务回顾事务简介一组业务ABCD操作，要么全部成功，要么全部不成功。 事务特性：ACIDØ 原子性：整体 【原子性是指事务包含的所有操作要么全部成功，要么全部失败】 Ø 一致性：数据 【一个事务执行之前和执行之后都必须处于一致性状态】 Ø 隔离性：并发 【对于任意两个并发的事务T1和T2，在事务T1看来，T2要么在T1开始之前就已经结束，要么在T1结束之后才开始，这样每个事务都">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190826220159939.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps109.jpg">
 <meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps110.jpg">
 <meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps111.jpg">
@@ -238,11 +237,10 @@
 <meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps148.jpg">
 <meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps149.jpg">
 <meta property="og:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps150.jpg">
-<meta property="og:updated_time" content="2019-08-26T11:53:52.289Z">
+<meta property="og:updated_time" content="2019-08-26T14:15:15.674Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring第3天">
-<meta name="twitter:description" content="1 事务管理1.1 事务回顾事务简介一组业务ABCD操作，要么全部成功，要么全部不成功。 事务特性：ACIDØ 原子性：整体 【原子性是指事务包含的所有操作要么全部成功，要么全部失败】 Ø 一致性：数据 【一个事务执行之前和执行之后都必须处于一致性状态】 Ø 隔离性：并发 【对于任意两个并发的事务T1和T2，在事务T1看来，T2要么在T1开始之前就已经结束，要么在T1结束之后才开始，这样每个事务都">
-<meta name="twitter:image" content="file:///C:%5CUsers%5Clqg%5CAppData%5CLocal%5CTemp%5Cksohtml11180%5Cwps109.jpg">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190826220159939.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70">
 
 
 
@@ -566,7 +564,7 @@
                 
               
 
-              <time title="创建时间：2019-08-26 19:52:11 / 修改时间：19:53:52" itemprop="dateCreated datePublished" datetime="2019-08-26T19:52:11+08:00">2019-08-26</time>
+              <time title="创建时间：2019-08-26 19:52:11 / 修改时间：22:15:15" itemprop="dateCreated datePublished" datetime="2019-08-26T19:52:11+08:00">2019-08-26</time>
             
 
             
@@ -643,7 +641,10 @@
       
 
       
-        <h1 id="1-事务管理"><a href="#1-事务管理" class="headerlink" title="1 事务管理"></a><strong>1</strong> <strong>事务管理</strong></h1><h2 id="1-1-事务回顾"><a href="#1-1-事务回顾" class="headerlink" title="1.1 事务回顾"></a><strong>1.1 事务回顾</strong></h2><h3 id="事务简介"><a href="#事务简介" class="headerlink" title="事务简介"></a><strong>事务简介</strong></h3><p>一组业务ABCD操作，要么全部成功，要么全部不成功。</p>
+        <p><img src="https://img-blog.csdnimg.cn/20190826220159939.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70" alt="å¨è¿éæå¥å¾çæè¿°"></p>
+<a id="more"></a>
+
+<h1 id="1-事务管理"><a href="#1-事务管理" class="headerlink" title="1 事务管理"></a><strong>1</strong> <strong>事务管理</strong></h1><h2 id="1-1-事务回顾"><a href="#1-1-事务回顾" class="headerlink" title="1.1 事务回顾"></a><strong>1.1 事务回顾</strong></h2><h3 id="事务简介"><a href="#事务简介" class="headerlink" title="事务简介"></a><strong>事务简介</strong></h3><p>一组业务ABCD操作，要么全部成功，要么全部不成功。</p>
 <h3 id="事务特性：ACID"><a href="#事务特性：ACID" class="headerlink" title="事务特性：ACID"></a><strong>事务特性：ACID</strong></h3><p>Ø 原子性：整体 【原子性是指事务包含的所有操作要么全部成功，要么全部失败】</p>
 <p>Ø 一致性：数据 【一个事务执行之前和执行之后都必须处于一致性状态】</p>
 <p>Ø 隔离性：并发 【对于任意两个并发的事务T1和T2，在事务T1看来，T2要么在T1开始之前就已经结束，要么在T1结束之后才开始，这样每个事务都感觉不到有其他事务在并发地执行。】</p>
