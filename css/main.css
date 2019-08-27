@@ -1125,7 +1125,7 @@ pre .javascript .function {
   color: #fff;
   background: #222;
   border-bottom: none;
-  color: #ffb6c1 !important;
+  color: #38f709 !important;
 }
 .brand:hover {
   color: #fff;
@@ -2148,7 +2148,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #8313ff;
+  background: #b3ff82;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3526,12 +3526,12 @@ img.img-topic {
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
 .footer-inner {
-  color: #ffb6c1;
+  color: #f00;
 }
 #sidebar p,
 #sidebar span,
 #sidebar a {
-  color: #ffb6c1;
+  color: #0ff;
 }
 @-moz-keyframes shake-it {
   0% {
