@@ -2148,7 +2148,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #f2111a;
+  background: #e2abff;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3432,14 +3432,18 @@ ul.breadcrumb li+li:last-child {
     margin: 8px 0 0;
   }
 }
+.site-title {
+  color: #f709c7;
+}
 .menu .menu-item a:hover {
   margin-top: 2px;
   border-bottom-color: rgba(161,102,171,0);
+  color: #ff0;
 }
 .posts-expand .post-title {
   font-size: 26px;
   font-weight: 700;
-  color: #11e;
+  color: #f00;
 }
 .post-body p a {
   color: #0593d3;
@@ -3529,12 +3533,12 @@ img.img-topic {
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
 .footer-inner {
-  color: #f00;
+  color: #0f0;
 }
 #sidebar p,
 #sidebar span,
 #sidebar a {
-  color: #0ff;
+  color: #0f0;
 }
 @-moz-keyframes shake-it {
   0% {
