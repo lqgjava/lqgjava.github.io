@@ -195,7 +195,7 @@
 <meta property="og:site_name" content="凌枫&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190826101849343.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-08-26T10:01:07.205Z">
+<meta property="og:updated_time" content="2019-08-27T04:27:22.626Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="十四、Spring Boot之事务处理详解">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190826101849343.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70">
@@ -522,12 +522,24 @@
                 
               
 
-              <time title="创建时间：2019-08-26 17:27:50 / 修改时间：18:01:07" itemprop="dateCreated datePublished" datetime="2019-08-26T17:27:50+08:00">2019-08-26</time>
+              <time title="创建时间：2019-08-26 17:27:50" itemprop="dateCreated datePublished" datetime="2019-08-26T17:27:50+08:00">2019-08-26</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-27 12:27:22" itemprop="dateModified" datetime="2019-08-27T12:27:22+08:00">2019-08-27</time>
               
             
           </span>
@@ -601,6 +613,49 @@
       
         <p><img src="https://img-blog.csdnimg.cn/20190826101849343.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70" alt="img"></p>
 <a id="more"></a>
+
+<h3 id="使用-SQL-数据库-事务处理"><a href="#使用-SQL-数据库-事务处理" class="headerlink" title="使用 SQL 数据库-事务处理"></a>使用 SQL 数据库-事务处理</h3><p>一、事务有四个特性：ACID原子性（Atomicity）：事务是一个原子操作，由一系列动作组成。事务的原子性确保动作要么全部完成要么完全不起作用。</p>
+<p>一致性（Consistency）：一旦事务完成（不管成功还是失败），系统必须确保它所建模的业务处于一致的态，而不会是部分完成部分失败。在现实中的数据不应该被破坏。</p>
+<p>隔离性（Isolation）：可能有许多事务会同时处理相同的数据，因此每个事务都应该与其他事务隔离开来防止数据损坏。</p>
+<p>持久性（Durability）：一旦事务完成，无论发生什么系统错误，它的结果都不应该受到影响，这样就能任何系统崩溃中恢复过来。通常情况下，事务的结果被写到持久化存储器中。</p>
+<p><strong>二、传播行为</strong></p>
+<p>当事务方法被另一个事务方法调用时，必须指定事务应该如何传播。例如：方法可能继续在现有事务中行，也可能开启一个新事务，并在自己的事务中运行。</p>
+<p>Spring 定义了七种传播行为：PROPAGATION_REQUIRED 表示当前方法必须运行在事务中。如果当前事务存在，方法将会在该事务中运行。否则，会启动一个新的事务，<strong>Spring 默认使用</strong></p>
+<p>PROPAGATION_SUPPORTS     表示当前方法不需要事务上下文，但是如果存在当前事务的话，那么该方法会在这个事务中运行</p>
+<p>PROPAGATION_MANDATORY        表示该方法必须在事务中运行，如果当前事务不存在，则会抛出一个异常</p>
+<p>PROPAGATION_REQUIRED_NEW 表示当前方法必须运行在它自己的事务中。一个新的事务将被启动。如存在当前事务，在该方法执行期间，当前事务会被挂起。如果使用 JTATransactionManager 的话，则需访问 TransactionManager</p>
+<p>PROPAGATION_NOT_SUPPORTED 表示该方法不应该运行在事务中。如果存在当前事务，在该方法运行期间，当前事务将被挂起。如果使用 JTATransactionManager 的话，则需要访问 TransactionManagerPROPAGATION_NEVER 表示当前方法不应该运行在事务上下文中。如果当前正有一个事务在运行，则会抛出异常</p>
+<p>PROPAGATION_NESTED 表示如果当前已经存在一个事务，那么该方法将会在嵌套事务中运行。嵌套的事务可以独立于当前事务进行单独地提交或回滚。如果当前事务不存在，那么其行为与PROPAGATION_REQUIRED 一样。注意各厂商对这种传播行为的支持是有所差异的。可以参考资源管理器的文档来确认它们是否支持嵌套事务</p>
+<p><strong>三、隔离级别</strong></p>
+<p>隔离级别定义了一个事务可能受其他并发事务影响的程度。</p>
+<p>ISOLATION_DEFAULT 使用后端数据库默认的隔离级别，<strong>Spring 默认使用，mysql 默认的隔离级别为：Repeatable Read(可重复读)</strong></p>
+<p>ISOLATION_READ_UNCOMMITTED 读未提交，最低的隔离级别，允许读取尚未提交的数据变更，可能会导脏读、幻读或不可重复读</p>
+<p>ISOLATION_READ_COMMITTED 读已提交，允许读取并发事务已经提交的数据，可以阻止脏读，但是幻Spring Boot 基础教程作者：冯永伟或不可重复读仍有可能发生</p>
+<p>ISOLATION_REPEATABLE_READ 可重复读，对同一字段的多次读取结果都是一致的，除非数据是被本身务自己所修改，可以阻止脏读和不可重复读，但幻读仍有可能发生</p>
+<p>ISOLATION_SERIALIZABLE 可串行化，最高的隔离级别，完全服从 ACID 的隔离级别，确保阻止脏读、不重复读以及幻读，也是最慢的事务隔离级别，因为它通常是通过完全锁定事务相关的数据库表来实现的</p>
+<p>脏读（Dirty reads）——脏读发生在一个事务读取了另一个事务改写但尚未提交的数据时。如果改写再稍后被回滚了，那么第一个事务获取的数据就是无效的。</p>
+<p>不可重复读（Nonrepeatable read）——不可重复读发生在一个事务执行相同的查询两次或两次以上是每次都得到不同的数据时。这通常是因为另一个并发事务在两次查询期间进行了更新。</p>
+<p>幻读（Phantom read）——幻读与不可重复读类似。它发生在一个事务（T1）读取了几行数据，接着另个并发事务（T2）插入了一些数据时。在随后的查询中，第一个事务（T1）就会发现多了一些原本不存的记录。</p>
+<p><strong>四、属性说明 @Transactional</strong></p>
+<p>a、isolation：用于指定事务的隔离级别。默认为底层事务的隔离级别。</p>
+<p>b、noRollbackFor：指定遇到指定异常时强制不回滚事务。</p>
+<p>c、noRollbackForClassName：指定遇到指定多个异常时强制不回滚事务。该属性可以指定多个异常类名。</p>
+<p>d、propagation:指定事务的传播属性。</p>
+<p>e、readOnly：指定事务是否只读。表示这个事务只读取数据但不更新数据，这样可以帮助数据库引擎优化事务。若真的是一个只读取的数据库应设置 readOnly=true</p>
+<p>f、rollbackFor：指定遇到指定异常时强制回滚事务。</p>
+<p>g、rollbackForClassName：指定遇到指定多个异常时强制回滚事务。该属性可以指定多个异常类名。</p>
+<p>h、timeout：指定事务的超时时长。</p>
+<h3 id="使用Spring-Boot处理事务的步骤"><a href="#使用Spring-Boot处理事务的步骤" class="headerlink" title="使用Spring Boot处理事务的步骤"></a>使用Spring Boot处理事务的步骤</h3><p><strong>1、创建RoncooUser实体类</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.roncoo.education.bean;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 实体类</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> wujing</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RoncooUser</span> </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> id;</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> Date createTime;</span><br><span class="line">	<span class="comment">//省略getter、setter和toString方法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.创建RoncooUserDao接口类</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.roncoo.education.dao;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.roncoo.education.bean.RoncooUser;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> wujing</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">RoncooUserDao</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 插入</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> roncooUser</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">insert</span><span class="params">(RoncooUser roncooUser)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 删除</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> id</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">deleteById</span><span class="params">(<span class="keyword">int</span> id)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 更新</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> roncooUser</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">updateById</span><span class="params">(RoncooUser roncooUser)</span></span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 查找</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> id</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="function">RoncooUser <span class="title">selectById</span><span class="params">(<span class="keyword">int</span> id)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>3.创建UserService类</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.roncoo.education.service;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Service;</span><br><span class="line"><span class="keyword">import</span> org.springframework.transaction.annotation.Transactional;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.roncoo.education.bean.RoncooUser;</span><br><span class="line"><span class="keyword">import</span> com.roncoo.education.bean.RoncooUserLog;</span><br><span class="line"><span class="keyword">import</span> com.roncoo.education.dao.RoncooUserDao;</span><br><span class="line"><span class="keyword">import</span> com.roncoo.education.dao.RoncooUserLogDao;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Service</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> RoncooUserDao roncooUserDao;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> RoncooUserLogDao roncooUserLogDao;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 用户注册</span></span><br><span class="line"><span class="comment">	 * </span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="meta">@Transactional</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">register</span><span class="params">(String name, String ip)</span> </span>&#123;</span><br><span class="line">		<span class="comment">// 1.添加用户</span></span><br><span class="line">		RoncooUser roncooUser = <span class="keyword">new</span> RoncooUser();</span><br><span class="line">		roncooUser.setName(name);</span><br><span class="line">		roncooUser.setCreateTime(<span class="keyword">new</span> Date());</span><br><span class="line">		roncooUserDao.insert(roncooUser);</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 测试使用</span></span><br><span class="line">		<span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">		<span class="keyword">if</span> (flag) &#123;</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> RuntimeException();</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 2.添加注册日志</span></span><br><span class="line">		RoncooUserLog roncooUserLog = <span class="keyword">new</span> RoncooUserLog();</span><br><span class="line">		roncooUserLog.setUserName(name);</span><br><span class="line">		roncooUserLog.setUserIp(ip);</span><br><span class="line">		roncooUserLog.setCreateTime(<span class="keyword">new</span> Date());</span><br><span class="line">		roncooUserLogDao.save(roncooUserLog);</span><br><span class="line"></span><br><span class="line">		<span class="keyword">return</span> <span class="string">"success"</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>4.测试</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.roncoo.education;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"><span class="keyword">import</span> org.junit.runner.RunWith;</span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.test.context.SpringBootTest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.test.context.junit4.SpringRunner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> com.roncoo.education.service.UserService;</span><br><span class="line"></span><br><span class="line"><span class="meta">@RunWith</span>(SpringRunner.class)</span><br><span class="line"><span class="meta">@SpringBootTest</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringBootDemo151ApplicationTests</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Autowired</span></span><br><span class="line">	<span class="keyword">private</span> UserService userService;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Test</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">register</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		String result = userService.register(<span class="string">"无境ff"</span>, <span class="string">"192.168.1.1"</span>);</span><br><span class="line">		System.out.println(result);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
       
@@ -743,8 +798,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -763,7 +827,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-count">51</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -827,7 +891,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -933,6 +999,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-SQL-数据库-事务处理"><span class="nav-number">1.</span> <span class="nav-text">使用 SQL 数据库-事务处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用Spring-Boot处理事务的步骤"><span class="nav-number">2.</span> <span class="nav-text">使用Spring Boot处理事务的步骤</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

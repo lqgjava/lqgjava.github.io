@@ -188,14 +188,17 @@
         }
     })();
 </script>
-  <meta property="og:type" content="article">
+  <meta name="keywords" content="Spring MVC">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Spring MVC常用注解，你会几个">
 <meta property="og:url" content="http://yoursite.com/2019/08/27/Spring-MVC常用注解，你会几个/index.html">
 <meta property="og:site_name" content="凌枫&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-26T16:45:35.611Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190827123448618.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-08-27T04:40:33.714Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring MVC常用注解，你会几个">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190827123448618.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70">
 
 
 
@@ -519,12 +522,34 @@
                 
               
 
-              <time title="创建时间：2019-08-27 00:45:35" itemprop="dateCreated datePublished" datetime="2019-08-27T00:45:35+08:00">2019-08-27</time>
+              <time title="创建时间：2019-08-27 00:45:35 / 修改时间：12:40:33" itemprop="dateCreated datePublished" datetime="2019-08-27T00:45:35+08:00">2019-08-27</time>
             
 
+            
+              
+
+              
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/后台/" itemprop="url" rel="index"><span itemprop="name">后台</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -574,7 +599,49 @@
       
 
       
-        
+        <p><img src="https://img-blog.csdnimg.cn/20190827123448618.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<a id="more"></a>
+
+<h2 id="常用注解"><a href="#常用注解" class="headerlink" title="常用注解"></a>常用注解</h2><ul>
+<li>Controller</li>
+</ul>
+<p>注解一个类表示控制器，Spring MVC会自动扫描标注了这个注解的类。</p>
+<ul>
+<li>RequestMapping</li>
+</ul>
+<p>请求路径映射，可以标注类，也可以是方法，可以指定请求类型，默认不指定为全部接收。</p>
+<ul>
+<li>RequestParam</li>
+</ul>
+<p>放在参数前，表示只能接收参数a=b格式的数据，即 <code>Content-Type</code>为 <code>application/x-www-form-urlencoded</code>类型的内容。</p>
+<ul>
+<li>RequestBody</li>
+</ul>
+<p>放在参数前，表示参数从request body中获取，而不是从地址栏获取，所以这肯定是接收一个POST请求的非a=b格式的数据，即 <code>Content-Type</code>不为 <code>application/x-www-form-urlencoded</code>类型的内容。</p>
+<ul>
+<li>ResponseBody</li>
+</ul>
+<p>放在方法上或者返回类型前，表示此方法返回的数据放在response body里面，而不是跳转页面。一般用于ajax请求，返回json数据。</p>
+<ul>
+<li>RestController</li>
+</ul>
+<p>这个是Controller和ResponseBody的组合注解，表示@Controller标识的类里面的所有返回参数都放在response body里面。</p>
+<ul>
+<li>PathVariable</li>
+</ul>
+<p>路径绑定变量，用于绑定restful路径上的变量。</p>
+<ul>
+<li>@RequestHeader</li>
+</ul>
+<p>放在方法参数前，用来获取request header中的参数值。</p>
+<ul>
+<li>@CookieValue;</li>
+</ul>
+<p>放在方法参数前，用来获取request header cookie中的参数值。</p>
+<ul>
+<li>GetMapping PostMapping PutMapping.. *Mapping的是Spring4.3加入的新注解，表示特定的请求类型路径映射，而不需要写RequestMethod来指定请求类型。</li>
+</ul>
+<h2 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.dom4j.util.UserDataElement;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.PathVariable;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestBody;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.ResponseBody;</span><br><span class="line">	<span class="meta">@Controller</span></span><br><span class="line">	<span class="meta">@RequestMapping</span>(<span class="string">"/test"</span>)</span><br><span class="line">	<span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TestController</span> </span>&#123;</span><br><span class="line">	<span class="meta">@RequestMapping</span>(value = <span class="string">"/get/&#123;no&#125;"</span>, method = RequestMethod.GET)    </span><br><span class="line">	<span class="meta">@ResponseBody</span>    </span><br><span class="line">	<span class="function"><span class="keyword">public</span> Object <span class="title">get</span><span class="params">(@PathVariable(<span class="string">"no"</span>)</span> String no) </span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> <span class="keyword">new</span> UserDataElement(<span class="string">""</span>);</span><br><span class="line">        &#125;    </span><br><span class="line">        <span class="meta">@RequestMapping</span>(value = <span class="string">"/save"</span>, method = RequestMethod.POST)</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">save</span><span class="params">(@RequestBody UserDataElement user)</span> </span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     <div>
@@ -639,6 +706,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Spring-MVC/" rel="tag"><i class="fa fa-tag"></i>Spring MVC</a>
+          
+        </div>
+      
 
       
       
@@ -647,6 +720,10 @@
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/27/Controller-Service-Component详解/" rel="prev" title="@Controller,@Service,@Component详解">
+                 <i class="fa fa-chevron-left"></i> @Controller,@Service,@Component详解
+              </a>
             
           </div>
 
@@ -705,8 +782,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -725,7 +811,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">47</span>
+                    <span class="site-state-item-count">51</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -789,7 +875,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">10</span>
+                      
+                    
+                    <span class="site-state-item-count">11</span>
                     <span class="site-state-item-name">标签</span>
                   
                 </div>
@@ -895,6 +983,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#常用注解"><span class="nav-number">1.</span> <span class="nav-text">常用注解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#演示"><span class="nav-number">2.</span> <span class="nav-text">演示</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
