@@ -195,7 +195,8 @@
 <meta property="og:site_name" content="凌枫&#39;s Blog">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190824212754174.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-08-25T08:01:40.080Z">
+<meta property="og:image" content="http://yoursite.com/.com//C:%5CUsers%5Clqg%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566892192155.png">
+<meta property="og:updated_time" content="2019-08-27T07:50:01.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="六、Spring Boot整合Thymeleaf详解">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190824212754174.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70">
@@ -522,12 +523,24 @@
                 
               
 
-              <time title="创建时间：2019-08-25 15:51:37 / 修改时间：16:01:40" itemprop="dateCreated datePublished" datetime="2019-08-25T15:51:37+08:00">2019-08-25</time>
+              <time title="创建时间：2019-08-25 15:51:37" itemprop="dateCreated datePublished" datetime="2019-08-25T15:51:37+08:00">2019-08-25</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-27 15:50:01" itemprop="dateModified" datetime="2019-08-27T15:50:01+08:00">2019-08-27</time>
               
             
           </span>
@@ -602,7 +615,317 @@
         <p><img src="https://img-blog.csdnimg.cn/20190824212754174.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70" alt="img"></p>
 <a id="more"></a>
 
-<h1 id="Spring-Boot整合Thymeleaf详解"><a href="#Spring-Boot整合Thymeleaf详解" class="headerlink" title="Spring Boot整合Thymeleaf详解"></a>Spring Boot整合Thymeleaf详解</h1>
+<h1 id="Thymeleaf的基本语法和常用方法"><a href="#Thymeleaf的基本语法和常用方法" class="headerlink" title="Thymeleaf的基本语法和常用方法"></a>Thymeleaf的基本语法和常用方法</h1><p>简单说， Thymeleaf 是一个跟 Velocity、FreeMarker 类似的模板引擎，它可以完全替代 JSP 。相较与其他的模板引擎，它有如下三个极吸引人的特点：</p>
+<ul>
+<li>1.Thymeleaf 在有网络和无网络的环境下皆可运行，即它可以让美工在浏览器查看页面的静态效果，也可以让程序员在服务器查看带数据的动态页面效果。这是由于它支持 html 原型，然后在 html 标签里增加额外的属性来达到模板+数据的展示方式。浏览器解释 html 时会忽略未定义的标签属性，所以 thymeleaf 的模板可以静态地运行；当有数据返回到页面时，Thymeleaf 标签会动态地替换掉静态内容，使页面动态显示。</li>
+<li>2.Thymeleaf 开箱即用的特性。它提供标准和spring标准两种方言，可以直接套用模板实现JSTL、 OGNL表达式效果，避免每天套模板、该jstl、改标签的困扰。同时开发人员也可以扩展和创建自定义的方言。</li>
+<li>3.Thymeleaf 提供spring标准方言和一个与 SpringMVC 完美集成的可选模块，可以快速的实现表单绑定、属性编辑器、国际化等功能。</li>
+</ul>
+<h2 id="标准表达式语法"><a href="#标准表达式语法" class="headerlink" title="标准表达式语法"></a>标准表达式语法</h2><p>它们分为四类：</p>
+<ul>
+<li>1.变量表达式</li>
+<li>2.选择或星号表达式</li>
+<li>3.文字国际化表达式</li>
+<li>4.URL表达式</li>
+</ul>
+<h3 id="变量表达式"><a href="#变量表达式" class="headerlink" title="变量表达式"></a>变量表达式</h3><p>变量表达式即OGNL表达式或Spring EL表达式(在Spring术语中也叫model attributes)。如下所示：<br><code>${session.user.name}</code>  </p>
+<p>它们将以HTML标签的一个属性来表示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;span th:text=&quot;$&#123;book.author.name&#125;&quot;&gt; </span><br><span class="line">&lt;li th:each=&quot;book : $&#123;books&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="选择-星号-表达式"><a href="#选择-星号-表达式" class="headerlink" title="选择(星号)表达式"></a>选择(星号)表达式</h3><p>选择表达式很像变量表达式，不过它们用一个预先选择的对象来代替上下文变量容器(map)来执行，如下：<br><code>*{customer.name}</code></p>
+<p>被指定的object由th:object属性定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div th:object=&quot;$&#123;book&#125;&quot;&gt;  </span><br><span class="line">  ...  </span><br><span class="line">  &lt;span th:text=&quot;*&#123;title&#125;&quot;&gt;...&lt;/span&gt;  </span><br><span class="line">  ...  </span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="文字国际化表达式"><a href="#文字国际化表达式" class="headerlink" title="文字国际化表达式"></a>文字国际化表达式</h3><p>文字国际化表达式允许我们从一个外部文件获取区域文字信息(.properties)，用Key索引Value，还可以提供一组参数(可选).</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#&#123;main.title&#125;  </span><br><span class="line">#&#123;message.entrycreated($&#123;entryId&#125;)&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以在模板文件中找到这样的表达式代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;table&gt;  </span><br><span class="line">  ...  </span><br><span class="line">  &lt;th th:text=&quot;#&#123;header.address.city&#125;&quot;&gt;...&lt;/th&gt;  </span><br><span class="line">  &lt;th th:text=&quot;#&#123;header.address.country&#125;&quot;&gt;...&lt;/th&gt;  </span><br><span class="line">  ...  </span><br><span class="line">&lt;/table&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="URL表达式"><a href="#URL表达式" class="headerlink" title="URL表达式"></a>URL表达式</h3><p>URL表达式指的是把一个有用的上下文或回话信息添加到URL，这个过程经常被叫做URL重写。<br><code>@{/order/list}</code><br>URL还可以设置参数：<br><code>@{/order/details(id=${orderId})}</code><br>相对路径：<br><code>@{../documents/report}</code>  </p>
+<p>让我们看这些表达式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;form th:action=&quot;@&#123;/createOrder&#125;&quot;&gt;  </span><br><span class="line">&lt;a href=&quot;main.html&quot; th:href=&quot;@&#123;/main&#125;&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="变量表达式和星号表达有什么区别吗？"><a href="#变量表达式和星号表达有什么区别吗？" class="headerlink" title="变量表达式和星号表达有什么区别吗？"></a>变量表达式和星号表达有什么区别吗？</h3><p>如果不考虑上下文的情况下，两者没有区别；星号语法评估在选定对象上表达，而不是整个上下文<br>什么是选定对象？就是父标签的值，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div th:object=&quot;$&#123;session.user&#125;&quot;&gt;</span><br><span class="line">  &lt;p&gt;Name: &lt;span th:text=&quot;*&#123;firstName&#125;&quot;&gt;Sebastian&lt;/span&gt;.&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;Surname: &lt;span th:text=&quot;*&#123;lastName&#125;&quot;&gt;Pepper&lt;/span&gt;.&lt;/p&gt;</span><br><span class="line">  &lt;p&gt;Nationality: &lt;span th:text=&quot;*&#123;nationality&#125;&quot;&gt;Saturn&lt;/span&gt;.&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这是完全等价于：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div th:object=&quot;$&#123;session.user&#125;&quot;&gt;</span><br><span class="line">    &lt;p&gt;Name: &lt;span th:text=&quot;$&#123;session.user.firstName&#125;&quot;&gt;Sebastian&lt;/span&gt;.&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;Surname: &lt;span th:text=&quot;$&#123;session.user.lastName&#125;&quot;&gt;Pepper&lt;/span&gt;.&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;Nationality: &lt;span th:text=&quot;$&#123;session.user.nationality&#125;&quot;&gt;Saturn&lt;/span&gt;.&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>当然，美元符号和星号语法可以混合使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;div th:object=&quot;$&#123;session.user&#125;&quot;&gt;</span><br><span class="line">    &lt;p&gt;Name: &lt;span th:text=&quot;*&#123;firstName&#125;&quot;&gt;Sebastian&lt;/span&gt;.&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;Surname: &lt;span th:text=&quot;$&#123;session.user.lastName&#125;&quot;&gt;Pepper&lt;/span&gt;.&lt;/p&gt;</span><br><span class="line">    &lt;p&gt;Nationality: &lt;span th:text=&quot;*&#123;nationality&#125;&quot;&gt;Saturn&lt;/span&gt;.&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="表达式支持的语法"><a href="#表达式支持的语法" class="headerlink" title="表达式支持的语法"></a>表达式支持的语法</h3><h4 id="字面（Literals）"><a href="#字面（Literals）" class="headerlink" title="字面（Literals）"></a>字面（Literals）</h4><ul>
+<li>文本文字（Text literals）: <code>&#39;one text&#39;, &#39;Another one!&#39;,…</code></li>
+<li>数字文本（Number literals）: <code>0, 34, 3.0, 12.3,…</code></li>
+<li>布尔文本（Boolean literals）: <code>true, false</code></li>
+<li>空（Null literal）: <code>null</code></li>
+<li>文字标记（Literal tokens）: <code>one, sometext, main,…</code></li>
+</ul>
+<h4 id="文本操作（Text-operations）"><a href="#文本操作（Text-operations）" class="headerlink" title="文本操作（Text operations）"></a>文本操作（Text operations）</h4><ul>
+<li>字符串连接(String concatenation): <code>+</code></li>
+<li>文本替换（Literal substitutions）: <code>|The name is ${name}|</code></li>
+</ul>
+<h4 id="算术运算（Arithmetic-operations）"><a href="#算术运算（Arithmetic-operations）" class="headerlink" title="算术运算（Arithmetic operations）"></a>算术运算（Arithmetic operations）</h4><ul>
+<li>二元运算符（Binary operators）: <code>+, -, *, /, %</code></li>
+<li>减号（单目运算符）Minus sign (unary operator): <code>-</code></li>
+</ul>
+<h4 id="布尔操作（Boolean-operations）"><a href="#布尔操作（Boolean-operations）" class="headerlink" title="布尔操作（Boolean operations）"></a>布尔操作（Boolean operations）</h4><ul>
+<li>二元运算符（Binary operators）:<code>and, or</code></li>
+<li>布尔否定（一元运算符）Boolean negation (unary operator):<code>!, not</code></li>
+</ul>
+<h4 id="比较和等价-Comparisons-and-equality"><a href="#比较和等价-Comparisons-and-equality" class="headerlink" title="比较和等价(Comparisons and equality)"></a>比较和等价(Comparisons and equality)</h4><ul>
+<li>比较（Comparators）: <code>&gt;, &lt;, &gt;=, &lt;= (gt, lt, ge, le)</code></li>
+<li>等值运算符（Equality operators）:<code>==, != (eq, ne)</code></li>
+</ul>
+<h4 id="条件运算符（Conditional-operators）"><a href="#条件运算符（Conditional-operators）" class="headerlink" title="条件运算符（Conditional operators）"></a>条件运算符（Conditional operators）</h4><ul>
+<li>If-then: <code>(if) ? (then)</code></li>
+<li>If-then-else: <code>(if) ? (then) : (else)</code></li>
+<li>Default: (value) ?: <code>(defaultvalue)</code></li>
+</ul>
+<p>所有这些特征可以被组合并嵌套：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&apos;User is of type &apos; + ($&#123;user.isAdmin()&#125; ? &apos;Administrator&apos; : ($&#123;user.type&#125; ?: &apos;Unknown&apos;))</span><br></pre></td></tr></table></figure>
+
+<h2 id="常用th标签都有那些？"><a href="#常用th标签都有那些？" class="headerlink" title="常用th标签都有那些？"></a>常用th标签都有那些？</h2><table>
+<thead>
+<tr>
+<th>关键字</th>
+<th>功能介绍</th>
+<th>案例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>th:id</td>
+<td>替换id</td>
+<td><code>&lt;input th:id=&quot;&#39;xxx&#39; + ${collect.id}&quot;/&gt;</code></td>
+</tr>
+<tr>
+<td>th:text</td>
+<td>文本替换</td>
+<td><code>&lt;p  th:text=&quot;${collect.description}&quot;&gt;description&lt;/p&gt;</code></td>
+</tr>
+<tr>
+<td>th:utext</td>
+<td>支持html的文本替换</td>
+<td><code>&lt;p  th:utext=&quot;${htmlcontent}&quot;&gt;conten&lt;/p&gt;</code></td>
+</tr>
+<tr>
+<td>th:object</td>
+<td>替换对象</td>
+<td><code>&lt;div th:object=&quot;${session.user}&quot;&gt;</code></td>
+</tr>
+<tr>
+<td>th:value</td>
+<td>属性赋值</td>
+<td><code>&lt;input th:value=&quot;${user.name}&quot; /&gt;</code></td>
+</tr>
+<tr>
+<td>th:with</td>
+<td>变量赋值运算</td>
+<td><code>&lt;div th:with=&quot;isEven=${prodStat.count}%2==0&quot;&gt;&lt;/div&gt;</code></td>
+</tr>
+<tr>
+<td>th:style</td>
+<td>设置样式</td>
+<td><code>th:style=&quot;&#39;display:&#39; + @{(${sitrue} ? &#39;none&#39; : &#39;inline-block&#39;)} + &#39;&#39;&quot;</code></td>
+</tr>
+<tr>
+<td>th:onclick</td>
+<td>点击事件</td>
+<td><code>th:onclick=&quot;&#39;getCollect()&#39;&quot;</code></td>
+</tr>
+<tr>
+<td>th:each</td>
+<td>属性赋值</td>
+<td><code>tr th:each=&quot;user,userStat:${users}&quot;&gt;</code></td>
+</tr>
+<tr>
+<td>th:if</td>
+<td>判断条件</td>
+<td><code>&lt;a th:if=&quot;${userId == collect.userId}&quot; &gt;</code></td>
+</tr>
+<tr>
+<td>th:unless</td>
+<td>和th:if判断相反</td>
+<td><code>&lt;a th:href=&quot;@{/login}&quot; th:unless=${session.user != null}&gt;Login&lt;/a&gt;</code></td>
+</tr>
+<tr>
+<td>th:href</td>
+<td>链接地址</td>
+<td><code>&lt;a th:href=&quot;@{/login}&quot; th:unless=${session.user != null}&gt;Login&lt;/a&gt; /&gt;</code></td>
+</tr>
+<tr>
+<td>th:switch</td>
+<td>多路选择 配合th:case 使用</td>
+<td><code>&lt;div th:switch=&quot;${user.role}&quot;&gt;</code></td>
+</tr>
+<tr>
+<td>th:case</td>
+<td>th:switch的一个分支</td>
+<td><code>&lt;p th:case=&quot;&#39;admin&#39;&quot;&gt;User is an administrator&lt;/p&gt;</code></td>
+</tr>
+<tr>
+<td>th:fragment</td>
+<td>布局标签，定义一个代码片段，方便其它地方引用</td>
+<td><code>&lt;div th:fragment=&quot;alert&quot;&gt;</code></td>
+</tr>
+<tr>
+<td>th:include</td>
+<td>布局标签，替换内容到引入的文件</td>
+<td><code>&lt;head th:include=&quot;layout :: htmlhead&quot; th:with=&quot;title=&#39;xx&#39;&quot;&gt;&lt;/head&gt; /&gt;</code></td>
+</tr>
+<tr>
+<td>th:replace</td>
+<td>布局标签，替换整个标签到引入的文件</td>
+<td><code>&lt;div th:replace=&quot;fragments/header :: title&quot;&gt;&lt;/div&gt;</code></td>
+</tr>
+<tr>
+<td>th:selected</td>
+<td>selected选择框 选中</td>
+<td><code>th:selected=&quot;(${xxx.id} == ${configObj.dd})&quot;</code></td>
+</tr>
+<tr>
+<td>th:src</td>
+<td>图片类地址引入</td>
+<td><code>&lt;img class=&quot;img-responsive&quot; alt=&quot;App Logo&quot; th:src=&quot;@{/img/logo.png}&quot;  /&gt;</code></td>
+</tr>
+<tr>
+<td>th:inline</td>
+<td>定义js脚本可以使用变量</td>
+<td><code>&lt;script type=&quot;text/javascript&quot; th:inline=&quot;javascript&quot;&gt;</code></td>
+</tr>
+<tr>
+<td>th:action</td>
+<td>表单提交的地址</td>
+<td><code>&lt;form action=&quot;subscribe.html&quot; th:action=&quot;@{/subscribe}&quot;&gt;</code></td>
+</tr>
+<tr>
+<td>th:remove</td>
+<td>删除某个属性</td>
+<td><code>&lt;tr th:remove=&quot;all&quot;&gt;   1.all:删除包含标签和所有的孩子。2.body:不包含标记删除,但删除其所有的孩子。3.tag:包含标记的删除,但不删除它的孩子。4.all-but-first:删除所有包含标签的孩子,除了第一个。5.none:什么也不做。这个值是有用的动态评估。</code></td>
+</tr>
+<tr>
+<td>th:attr</td>
+<td>设置标签属性，多个属性可以用逗号分隔</td>
+<td>比如 <code>th:attr=&quot;src=@{/image/aa.jpg},title=#{logo}&quot;</code>，此标签不太优雅，一般用的比较少。</td>
+</tr>
+</tbody></table>
+<p>还有非常多的标签，这里只列出最常用的几个,由于一个标签内可以包含多个th:x属性，其生效的优先级顺序为:<br><code>include,each,if/unless/switch/case,with,attr/attrprepend/attrappend,value/href,src ,etc,text/utext,fragment,remove。</code></p>
+<h2 id="几种常用的使用方法"><a href="#几种常用的使用方法" class="headerlink" title="几种常用的使用方法"></a>几种常用的使用方法</h2><h3 id="1、赋值、字符串拼接"><a href="#1、赋值、字符串拼接" class="headerlink" title="1、赋值、字符串拼接"></a>1、赋值、字符串拼接</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;p  th:text=&quot;$&#123;collect.description&#125;&quot;&gt;description&lt;/p&gt;</span><br><span class="line">&lt;span th:text=&quot;&apos;Welcome to our application, &apos; + $&#123;user.name&#125; + &apos;!&apos;&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>字符串拼接还有另外一种简洁的写法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;span th:text=&quot;|Welcome to our application, $&#123;user.name&#125;!|&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、条件判断-If-Unless"><a href="#2、条件判断-If-Unless" class="headerlink" title="2、条件判断 If/Unless"></a>2、条件判断 If/Unless</h3><p>Thymeleaf中使用th:if和th:unless属性进行条件判断，下面的例子中，<code>&lt;a&gt;</code>标签只有在<code>th:if</code>中条件成立时才显示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;a th:if=&quot;$&#123;myself==&apos;yes&apos;&#125;&quot; &gt; &lt;/i&gt; &lt;/a&gt;</span><br><span class="line">&lt;a th:unless=$&#123;session.user != null&#125; th:href=&quot;@&#123;/login&#125;&quot; &gt;Login&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p>th:unless于th:if恰好相反，只有表达式中的条件不成立，才会显示其内容。</p>
+<p>也可以使用  <code>(if) ? (then) : (else)</code> 这种语法来判断显示的内容</p>
+<h3 id="3、for-循环"><a href="#3、for-循环" class="headerlink" title="3、for 循环"></a>3、for 循环</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> &lt;tr  th:each=&quot;collect,iterStat : $&#123;collects&#125;&quot;&gt; </span><br><span class="line">    &lt;th scope=&quot;row&quot; th:text=&quot;$&#123;collect.id&#125;&quot;&gt;1&lt;/th&gt;</span><br><span class="line">    &lt;td &gt;</span><br><span class="line">       &lt;img th:src=&quot;$&#123;collect.webLogo&#125;&quot;/&gt;</span><br><span class="line">    &lt;/td&gt;</span><br><span class="line">    &lt;td th:text=&quot;$&#123;collect.url&#125;&quot;&gt;Mark&lt;/td&gt;</span><br><span class="line">    &lt;td th:text=&quot;$&#123;collect.title&#125;&quot;&gt;Otto&lt;/td&gt;</span><br><span class="line">    &lt;td th:text=&quot;$&#123;collect.description&#125;&quot;&gt;@mdo&lt;/td&gt;</span><br><span class="line">    &lt;td th:text=&quot;$&#123;terStat.index&#125;&quot;&gt;index&lt;/td&gt;</span><br><span class="line">&lt;/tr&gt;</span><br></pre></td></tr></table></figure>
+
+<p>iterStat称作状态变量，属性有：</p>
+<ul>
+<li>index:当前迭代对象的index（从0开始计算）</li>
+<li>count: 当前迭代对象的index(从1开始计算)</li>
+<li>size:被迭代对象的大小</li>
+<li>current:当前迭代变量</li>
+<li>even/odd:布尔值，当前循环是否是偶数/奇数（从0开始计算）</li>
+<li>first:布尔值，当前循环是否是第一个</li>
+<li>last:布尔值，当前循环是否是最后一个</li>
+</ul>
+<h3 id="4、URL"><a href="#4、URL" class="headerlink" title="4、URL"></a>4、URL</h3><p>URL在Web应用模板中占据着十分重要的地位，需要特别注意的是Thymeleaf对于URL的处理是通过语法@{…}来处理的。<br>如果需要Thymeleaf对URL进行渲染，那么务必使用th:href，th:src等属性，下面是一个例子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Will produce &apos;http://localhost:8080/standard/unread&apos; (plus rewriting) --&gt;</span><br><span class="line"> &lt;a  th:href=&quot;@&#123;/standard/&#123;type&#125;(type=$&#123;type&#125;)&#125;&quot;&gt;view&lt;/a&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- Will produce &apos;/gtvg/order/3/details&apos; (plus rewriting) --&gt;</span><br><span class="line">&lt;a href=&quot;details.html&quot; th:href=&quot;@&#123;/order/&#123;orderId&#125;/details(orderId=$&#123;o.id&#125;)&#125;&quot;&gt;view&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p>设置背景</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div th:style=&quot;&apos;background:url(&apos; + @&#123;/&lt;path-to-image&gt;&#125; + &apos;);&apos;&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>根据属性值改变背景</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div class=&quot;media-object resource-card-image&quot;  th:style=&quot;&apos;background:url(&apos; + @&#123;($&#123;collect.webLogo&#125;==&apos;&apos; ? &apos;img/favicon.png&apos; : $&#123;collect.webLogo&#125;)&#125; + &apos;)&apos;&quot; &gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<p>几点说明：</p>
+<ul>
+<li>上例中URL最后的<code>(orderId=${o.id})</code> 表示将括号内的内容作为URL参数处理，该语法避免使用字符串拼接，大大提高了可读性</li>
+<li><code>@{...}</code>表达式中可以通过<code>{orderId}</code>访问Context中的orderId变量</li>
+<li><code>@{/order}</code>是Context相关的相对路径，在渲染时会自动添加上当前Web应用的Context名字，假设context名字为app，那么结果应该是/app/order</li>
+</ul>
+<h3 id="5、内联js"><a href="#5、内联js" class="headerlink" title="5、内联js"></a>5、内联js</h3><p>内联文本：[[…]]内联文本的表示方式，使用时，必须先用th:inline=”text/javascript/none”激活，th:inline可以在父级标签内使用，甚至作为body的标签。内联文本尽管比th:text的代码少，不利于原型显示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;script th:inline=&quot;javascript&quot;&gt;</span><br><span class="line">/*&lt;![CDATA[*/</span><br><span class="line">...</span><br><span class="line">var username = /*[[$&#123;sesion.user.name&#125;]]*/ &apos;Sebastian&apos;;</span><br><span class="line">var size = /*[[$&#123;size&#125;]]*/ 0;</span><br><span class="line">...</span><br><span class="line">/*]]&gt;*/</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>js附加代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/*[+</span><br><span class="line">var msg = &apos;This is a working application&apos;;</span><br><span class="line">+]*/</span><br></pre></td></tr></table></figure>
+
+<p>js移除代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">/*[- */</span><br><span class="line">var msg = &apos;This is a non-working template&apos;;</span><br><span class="line">/* -]*/</span><br></pre></td></tr></table></figure>
+
+<h3 id="6、内嵌变量"><a href="#6、内嵌变量" class="headerlink" title="6、内嵌变量"></a>6、内嵌变量</h3><p>为了模板更加易用，Thymeleaf还提供了一系列Utility对象（内置于Context中），可以通过#直接访问：</p>
+<ul>
+<li>dates ：  <em>java.util.Date的功能方法类。</em></li>
+<li>calendars :  <em>类似#dates，面向java.util.Calendar</em></li>
+<li>numbers :  <em>格式化数字的功能方法类</em></li>
+<li>strings :  <em>字符串对象的功能类，contains,startWiths,prepending/appending等等。</em></li>
+<li>objects:  <em>对objects的功能类操作。</em></li>
+<li>bools:  <em>对布尔值求值的功能方法。</em></li>
+<li>arrays：<em>对数组的功能类方法。</em></li>
+<li>lists:   <em>对lists功能类方法</em></li>
+<li>sets</li>
+<li>maps<br>…</li>
+</ul>
+<p>下面用一段代码来举例一些常用的方法：</p>
+<h4 id="dates"><a href="#dates" class="headerlink" title="dates"></a>dates</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * Format date with the specified pattern</span><br><span class="line"> * Also works with arrays, lists or sets</span><br><span class="line"> */</span><br><span class="line">$&#123;#dates.format(date, &apos;dd/MMM/yyyy HH:mm&apos;)&#125;</span><br><span class="line">$&#123;#dates.arrayFormat(datesArray, &apos;dd/MMM/yyyy HH:mm&apos;)&#125;</span><br><span class="line">$&#123;#dates.listFormat(datesList, &apos;dd/MMM/yyyy HH:mm&apos;)&#125;</span><br><span class="line">$&#123;#dates.setFormat(datesSet, &apos;dd/MMM/yyyy HH:mm&apos;)&#125;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> * Create a date (java.util.Date) object for the current date and time</span><br><span class="line"> */</span><br><span class="line">$&#123;#dates.createNow()&#125;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> * Create a date (java.util.Date) object for the current date (time set to 00:00)</span><br><span class="line"> */</span><br><span class="line">$&#123;#dates.createToday()&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="strings"><a href="#strings" class="headerlink" title="strings"></a>strings</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> * Check whether a String is empty (or null). Performs a trim() operation before check</span><br><span class="line"> * Also works with arrays, lists or sets</span><br><span class="line"> */</span><br><span class="line">$&#123;#strings.isEmpty(name)&#125;</span><br><span class="line">$&#123;#strings.arrayIsEmpty(nameArr)&#125;</span><br><span class="line">$&#123;#strings.listIsEmpty(nameList)&#125;</span><br><span class="line">$&#123;#strings.setIsEmpty(nameSet)&#125;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> * Check whether a String starts or ends with a fragment</span><br><span class="line"> * Also works with arrays, lists or sets</span><br><span class="line"> */</span><br><span class="line">$&#123;#strings.startsWith(name,&apos;Don&apos;)&#125;                  // also array*, list* and set*</span><br><span class="line">$&#123;#strings.endsWith(name,endingFragment)&#125;           // also array*, list* and set*</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> * Compute length</span><br><span class="line"> * Also works with arrays, lists or sets</span><br><span class="line"> */</span><br><span class="line">$&#123;#strings.length(str)&#125;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> * Null-safe comparison and concatenation</span><br><span class="line"> */</span><br><span class="line">$&#123;#strings.equals(str)&#125;</span><br><span class="line">$&#123;#strings.equalsIgnoreCase(str)&#125;</span><br><span class="line">$&#123;#strings.concat(str)&#125;</span><br><span class="line">$&#123;#strings.concatReplaceNulls(str)&#125;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line"> * Random</span><br><span class="line"> */</span><br><span class="line">$&#123;#strings.randomAlphanumeric(count)&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用thymeleaf布局"><a href="#使用thymeleaf布局" class="headerlink" title="使用thymeleaf布局"></a>使用thymeleaf布局</h2><p>使用thymeleaf布局非常的方便</p>
+<p>定义代码片段</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;footer th:fragment=&quot;copy&quot;&gt;</span><br><span class="line"> &amp;copy; 2016</span><br><span class="line">&lt;/footer&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在页面任何地方引入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt; </span><br><span class="line">  &lt;div th:include=&quot;footer :: copy&quot;&gt;&lt;/div&gt;</span><br><span class="line">  &lt;div th:replace=&quot;footer :: copy&quot;&gt;&lt;/div&gt;</span><br><span class="line"> &lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<p>th:include 和 th:replace区别，include只是加载，replace是替换</p>
+<p>返回的HTML如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt; </span><br><span class="line">   &lt;div&gt; &amp;copy; 2016 &lt;/div&gt; </span><br><span class="line">  &lt;footer&gt;&amp;copy; 2016 &lt;/footer&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<p>下面是一个常用的后台页面布局，将整个页面分为头部，尾部、菜单栏、隐藏栏，点击菜单只改变content区域的页面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;body class=&quot;layout-fixed&quot;&gt;</span><br><span class="line">  &lt;div th:fragment=&quot;navbar&quot;  class=&quot;wrapper&quot;  role=&quot;navigation&quot;&gt;</span><br><span class="line">    &lt;div th:replace=&quot;fragments/header :: header&quot;&gt;Header&lt;/div&gt;</span><br><span class="line">    &lt;div th:replace=&quot;fragments/left :: left&quot;&gt;left&lt;/div&gt;</span><br><span class="line">    &lt;div th:replace=&quot;fragments/sidebar :: sidebar&quot;&gt;sidebar&lt;/div&gt;</span><br><span class="line">    &lt;div layout:fragment=&quot;content&quot; id=&quot;content&quot; &gt;&lt;/div&gt;</span><br><span class="line">    &lt;div th:replace=&quot;fragments/footer :: footer&quot;&gt;footer&lt;/div&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/body&gt;</span><br></pre></td></tr></table></figure>
+
+<p>任何页面想使用这样的布局值只需要替换中见的 content模块即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;html xmlns:th=&quot;http://www.thymeleaf.org&quot; layout:decorator=&quot;layout&quot;&gt;</span><br><span class="line">  &lt;body&gt;</span><br><span class="line">     &lt;section layout:fragment=&quot;content&quot;&gt;</span><br><span class="line">   ...</span><br></pre></td></tr></table></figure>
+
+<p>也可以在引用模版的时候传参</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;head th:include=&quot;layout :: htmlhead&quot; th:with=&quot;title=&apos;Hello&apos;&quot;&gt;&lt;/head&gt;</span><br></pre></td></tr></table></figure>
+
+<p>layout 是文件地址，如果有文件夹可以这样写  fileName/layout:htmlhead<br>htmlhead 是指定义的代码片段 如 <code>th:fragment=&quot;copy&quot;</code></p>
+<h1 id="Spring-Boot整合Thymeleaf的步骤："><a href="#Spring-Boot整合Thymeleaf的步骤：" class="headerlink" title="Spring Boot整合Thymeleaf的步骤："></a>Spring Boot整合Thymeleaf的步骤：</h1><p><strong>Spring boot 在spring默认基础上，自动配置添加了以下特性:</strong></p>
+<ol>
+<li><p>包含了ContentNegotiatingViewResolver和BeanNameViewResolver beans。</p>
+</li>
+<li><p>对静态资源的支持，包括对WebJars的支持。</p>
+</li>
+<li><p>自动注册Converter，GenericConverter，Formatter beans。</p>
+</li>
+<li><p>对HttpMessageConverters的支持。</p>
+</li>
+<li><p>自动注册MessageCodeResolver。</p>
+</li>
+<li><p>对静态index.html的支持。</p>
+</li>
+<li><p>对自定义Favicon的支持。</p>
+</li>
+<li><p>主动使用ConfigurableWebBindingInitializer bean</p>
+</li>
+</ol>
+<p><strong>1、在pom文件中配置如下依赖</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">		&lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">		&lt;artifactId&gt;spring-boot-starter-thymeleaf&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>2.在templates文件夹中创建一个index.html</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">xmlns:th</span>=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">title</span>&gt;</span>Spring Boot Demo - FreeMarker<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">	<span class="tag">&lt;<span class="name">link</span> <span class="attr">href</span>=<span class="string">"/css/index.css"</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> /&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">center</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/images/logo.png"</span> /&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">h1</span> <span class="attr">id</span>=<span class="string">"title"</span> <span class="attr">th:text</span>=<span class="string">"$&#123;title&#125;"</span>&gt;</span><span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">center</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"/webjars/jquery/2.1.4/jquery.min.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line">    $(function()&#123;</span><br><span class="line">        $('#title').click(function()&#123;</span><br><span class="line">            alert('点击了');</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>3.在controller包中创建一个WebController</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.lqg.controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> lombok.extern.slf4j.Slf4j;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.Logger;</span><br><span class="line"><span class="keyword">import</span> org.slf4j.LoggerFactory;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Controller;</span><br><span class="line"><span class="keyword">import</span> org.springframework.ui.ModelMap;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Controller</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"/web"</span>)</span><br><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WebController</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Logger logger = LoggerFactory.getLogger(WebController.class);</span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"/index"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">index</span><span class="params">(ModelMap map)</span></span>&#123;</span><br><span class="line">        map.put(<span class="string">"title"</span>,<span class="string">"hello world"</span>);</span><br><span class="line">        logger.info(<span class="string">"这里是controller"</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"index"</span>;<span class="comment">//注意，不要在最前面加上/，Linux下会出错</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/.com//C:%5CUsers%5Clqg%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1566892192155.png" alt="1566892192155"></p>
+
       
     </div>
     <div>
@@ -692,8 +1015,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/25/五、Spring-Boot整合FreeMarker详解/" rel="next" title="五、Spring Boot整合FreeMarker详解">
-                五、Spring Boot整合FreeMarker详解 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/25/四、Spring-Boot整合日志详解/" rel="next" title="四、Spring Boot整合日志详解">
+                四、Spring Boot整合日志详解 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -954,7 +1277,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Boot整合Thymeleaf详解"><span class="nav-number">1.</span> <span class="nav-text">Spring Boot整合Thymeleaf详解</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Thymeleaf的基本语法和常用方法"><span class="nav-number">1.</span> <span class="nav-text">Thymeleaf的基本语法和常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标准表达式语法"><span class="nav-number">1.1.</span> <span class="nav-text">标准表达式语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变量表达式"><span class="nav-number">1.1.1.</span> <span class="nav-text">变量表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择-星号-表达式"><span class="nav-number">1.1.2.</span> <span class="nav-text">选择(星号)表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文字国际化表达式"><span class="nav-number">1.1.3.</span> <span class="nav-text">文字国际化表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL表达式"><span class="nav-number">1.1.4.</span> <span class="nav-text">URL表达式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量表达式和星号表达有什么区别吗？"><span class="nav-number">1.1.5.</span> <span class="nav-text">变量表达式和星号表达有什么区别吗？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表达式支持的语法"><span class="nav-number">1.1.6.</span> <span class="nav-text">表达式支持的语法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#字面（Literals）"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">字面（Literals）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文本操作（Text-operations）"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">文本操作（Text operations）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#算术运算（Arithmetic-operations）"><span class="nav-number">1.1.6.3.</span> <span class="nav-text">算术运算（Arithmetic operations）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#布尔操作（Boolean-operations）"><span class="nav-number">1.1.6.4.</span> <span class="nav-text">布尔操作（Boolean operations）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#比较和等价-Comparisons-and-equality"><span class="nav-number">1.1.6.5.</span> <span class="nav-text">比较和等价(Comparisons and equality)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#条件运算符（Conditional-operators）"><span class="nav-number">1.1.6.6.</span> <span class="nav-text">条件运算符（Conditional operators）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用th标签都有那些？"><span class="nav-number">1.2.</span> <span class="nav-text">常用th标签都有那些？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几种常用的使用方法"><span class="nav-number">1.3.</span> <span class="nav-text">几种常用的使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、赋值、字符串拼接"><span class="nav-number">1.3.1.</span> <span class="nav-text">1、赋值、字符串拼接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、条件判断-If-Unless"><span class="nav-number">1.3.2.</span> <span class="nav-text">2、条件判断 If/Unless</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、for-循环"><span class="nav-number">1.3.3.</span> <span class="nav-text">3、for 循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、URL"><span class="nav-number">1.3.4.</span> <span class="nav-text">4、URL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、内联js"><span class="nav-number">1.3.5.</span> <span class="nav-text">5、内联js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、内嵌变量"><span class="nav-number">1.3.6.</span> <span class="nav-text">6、内嵌变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dates"><span class="nav-number">1.3.6.1.</span> <span class="nav-text">dates</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#strings"><span class="nav-number">1.3.6.2.</span> <span class="nav-text">strings</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用thymeleaf布局"><span class="nav-number">1.4.</span> <span class="nav-text">使用thymeleaf布局</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Boot整合Thymeleaf的步骤："><span class="nav-number">2.</span> <span class="nav-text">Spring Boot整合Thymeleaf的步骤：</span></a></li></ol></div>
             
 
           </div>
