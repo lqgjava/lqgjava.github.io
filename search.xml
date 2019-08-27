@@ -364,9 +364,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[五、Spring Boot整合FreeMarker详解]]></title>
-    <url>%2F2019%2F08%2F25%2F%E4%BA%94%E3%80%81Spring-Boot%E6%95%B4%E5%90%88FreeMarker%E8%AF%A6%E8%A7%A3%2F</url>
-    <content type="text"><![CDATA[Spring Boot整合FreeMarker详解]]></content>
+    <title><![CDATA[七、Spring Boot整合JSP详解]]></title>
+    <url>%2F2019%2F08%2F25%2F%E4%B8%83%E3%80%81Spring-Boot%E6%95%B4%E5%90%88JSP%E8%AF%A6%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[Spring Boot整合JSP详解]]></content>
       <categories>
         <category>Spring Boot</category>
       </categories>
@@ -386,9 +386,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[七、Spring Boot整合JSP详解]]></title>
-    <url>%2F2019%2F08%2F25%2F%E4%B8%83%E3%80%81Spring-Boot%E6%95%B4%E5%90%88JSP%E8%AF%A6%E8%A7%A3%2F</url>
-    <content type="text"><![CDATA[Spring Boot整合JSP详解]]></content>
+    <title><![CDATA[五、Spring Boot整合FreeMarker详解]]></title>
+    <url>%2F2019%2F08%2F25%2F%E4%BA%94%E3%80%81Spring-Boot%E6%95%B4%E5%90%88FreeMarker%E8%AF%A6%E8%A7%A3%2F</url>
+    <content type="text"><![CDATA[Spring Boot整合FreeMarker详解]]></content>
       <categories>
         <category>Spring Boot</category>
       </categories>
