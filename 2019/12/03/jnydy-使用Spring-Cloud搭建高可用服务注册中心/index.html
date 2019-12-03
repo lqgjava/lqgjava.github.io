@@ -188,24 +188,33 @@
         }
     })();
 </script>
-  <meta name="keywords" content="Spring Boot">
+  <meta name="description" content="jnydy-二、使用Spring Cloud搭建高可用服务注册中心我们需要的，不仅仅是一个服务注册中心而已，而是一个高可用服务注册中心。  上篇博客【使用Spring Cloud搭建服务注册中心】中我们介绍了如何使用Spring Cloud搭建一个服务注册中心，但是搭建好的服务注册中心是一个单节点的服务注册中心，这样一旦发生了故障，那么整个服务就会瘫痪，所以我们需要一个高可用的服务注册中心，那么在">
+<meta name="keywords" content="spring cloud">
 <meta property="og:type" content="article">
-<meta property="og:title" content="九、Spring Boot整合Servlet、Fitter和Listener详解">
-<meta property="og:url" content="http://yoursite.com/2019/08/26/九、Spring-Boot整合Servlet、Fitter和Listener详解/index.html">
+<meta property="og:title" content="jnydy-使用Spring Cloud搭建高可用服务注册中心">
+<meta property="og:url" content="http://yoursite.com/2019/12/03/jnydy-使用Spring-Cloud搭建高可用服务注册中心/index.html">
 <meta property="og:site_name" content="凌枫&#39;s Blog">
+<meta property="og:description" content="jnydy-二、使用Spring Cloud搭建高可用服务注册中心我们需要的，不仅仅是一个服务注册中心而已，而是一个高可用服务注册中心。  上篇博客【使用Spring Cloud搭建服务注册中心】中我们介绍了如何使用Spring Cloud搭建一个服务注册中心，但是搭建好的服务注册中心是一个单节点的服务注册中心，这样一旦发生了故障，那么整个服务就会瘫痪，所以我们需要一个高可用的服务注册中心，那么在">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190826101955742.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-08-26T09:52:45.473Z">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-be6331696db811850dd22d034bc22451_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-3fa185bcf4795ae127491729b835d78a_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-3c40829a650f96ab57be6975d78f8601_hd.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-f826bfbe0fe790d07c6f120d4ba171d7_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-5505f5b9762aa653df4e4572681d87c2_hd.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-0581108fc4c2dca163dd2dc7991d7db5_hd.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-172f17854f47ef32a81c3cc7996ac3c6_hd.jpg">
+<meta property="og:updated_time" content="2019-12-03T02:18:32.655Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="九、Spring Boot整合Servlet、Fitter和Listener详解">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190826101955742.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70">
+<meta name="twitter:title" content="jnydy-使用Spring Cloud搭建高可用服务注册中心">
+<meta name="twitter:description" content="jnydy-二、使用Spring Cloud搭建高可用服务注册中心我们需要的，不仅仅是一个服务注册中心而已，而是一个高可用服务注册中心。  上篇博客【使用Spring Cloud搭建服务注册中心】中我们介绍了如何使用Spring Cloud搭建一个服务注册中心，但是搭建好的服务注册中心是一个单节点的服务注册中心，这样一旦发生了故障，那么整个服务就会瘫痪，所以我们需要一个高可用的服务注册中心，那么在">
+<meta name="twitter:image" content="https://pic2.zhimg.com/80/v2-be6331696db811850dd22d034bc22451_hd.jpg">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/08/26/九、Spring-Boot整合Servlet、Fitter和Listener详解/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/03/jnydy-使用Spring-Cloud搭建高可用服务注册中心/">
 
 
 
@@ -215,7 +224,7 @@
   };
 </script>
 
-  <title>九、Spring Boot整合Servlet、Fitter和Listener详解 | 凌枫's Blog</title>
+  <title>jnydy-使用Spring Cloud搭建高可用服务注册中心 | 凌枫's Blog</title>
   
 
 
@@ -480,7 +489,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/26/九、Spring-Boot整合Servlet、Fitter和Listener详解/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/03/jnydy-使用Spring-Cloud搭建高可用服务注册中心/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="凌枫">
@@ -497,7 +506,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">九、Spring Boot整合Servlet、Fitter和Listener详解
+          <h1 class="post-title" itemprop="name headline">jnydy-使用Spring Cloud搭建高可用服务注册中心
               
             
           </h1>
@@ -522,7 +531,7 @@
                 
               
 
-              <time title="创建时间：2019-08-26 17:22:01 / 修改时间：17:52:45" itemprop="dateCreated datePublished" datetime="2019-08-26T17:22:01+08:00">2019-08-26</time>
+              <time title="创建时间：2019-12-03 10:12:11 / 修改时间：10:18:32" itemprop="dateCreated datePublished" datetime="2019-12-03T10:12:11+08:00">2019-12-03</time>
             
 
             
@@ -544,7 +553,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Spring-Boot/" itemprop="url" rel="index"><span itemprop="name">Spring Boot</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/微服务/" itemprop="url" rel="index"><span itemprop="name">微服务</span></a></span>
 
                 
                 
@@ -559,8 +568,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/08/26/九、Spring-Boot整合Servlet、Fitter和Listener详解/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/08/26/九、Spring-Boot整合Servlet、Fitter和Listener详解/" itemprop="commentCount"></span>
+                <a href="/2019/12/03/jnydy-使用Spring-Cloud搭建高可用服务注册中心/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/12/03/jnydy-使用Spring-Cloud搭建高可用服务注册中心/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -568,7 +577,7 @@
 
           
           
-             <span id="/2019/08/26/九、Spring-Boot整合Servlet、Fitter和Listener详解/" class="leancloud_visitors" data-flag-title="九、Spring Boot整合Servlet、Fitter和Listener详解">
+             <span id="/2019/12/03/jnydy-使用Spring-Cloud搭建高可用服务注册中心/" class="leancloud_visitors" data-flag-title="jnydy-使用Spring Cloud搭建高可用服务注册中心">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -599,8 +608,22 @@
       
 
       
-        <p><img src="https://img-blog.csdnimg.cn/20190826101955742.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70" alt="img"></p>
-<a id="more"></a>
+        <h1 id="jnydy-二、使用Spring-Cloud搭建高可用服务注册中心"><a href="#jnydy-二、使用Spring-Cloud搭建高可用服务注册中心" class="headerlink" title="jnydy-二、使用Spring Cloud搭建高可用服务注册中心"></a>jnydy-二、使用Spring Cloud搭建高可用服务注册中心</h1><p>我们需要的，不仅仅是一个服务注册中心而已，而是一个高可用服务注册中心。</p>
+<hr>
+<p>上篇博客【<a href="https://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzI1NDY0MTkzNQ%3D%3D%26mid%3D2247483878%26idx%3D1%26sn%3Dd49f2eb61bada3d34443a0a4017a7b72%26chksm%3De9c35386deb4da901454e21ec73c8d7489f515d4f2f7633b1eec2fde93053c03737ac860dfc8%26scene%3D21%23wechat_redirect" target="_blank" rel="noopener">使用Spring Cloud搭建服务注册中心</a>】中我们介绍了如何使用Spring Cloud搭建一个服务注册中心，但是搭建好的服务注册中心是一个单节点的服务注册中心，这样一旦发生了故障，那么整个服务就会瘫痪，所以我们需要一个高可用的服务注册中心，那么在Eureka中，我们通过集群来解决这个问题。Eureka Server的高可用实际上就是将自己作为服务向其他服务注册中心注册自己，这样就会形成一组互相注册的服务注册中心，进而实现服务清单的互相同步，达到高可用的效果。OK,由于本文的效果是在上篇博客【<a href="https://link.zhihu.com/?target=http%3A//mp.weixin.qq.com/s%3F__biz%3DMzI1NDY0MTkzNQ%3D%3D%26mid%3D2247483878%26idx%3D1%26sn%3Dd49f2eb61bada3d34443a0a4017a7b72%26chksm%3De9c35386deb4da901454e21ec73c8d7489f515d4f2f7633b1eec2fde93053c03737ac860dfc8%26scene%3D21%23wechat_redirect" target="_blank" rel="noopener">使用Spring Cloud搭建服务注册中心</a>】的基础上实现的，所以建议小伙伴们先阅读上文，否则本文阅读可能会没有头绪。<br>OK，废话不多说，我们就来看看如何搭建高可用注册中心。<br><strong>增加配置文件</strong><br>在上篇博客中,我们创建了一个名叫eureka-server的服务注册中心，那么在本文中，我将修改这个工程的配置文件，进而将其启动多次。如下，我向这个工程中添加两个配置文件application-peer1.properties和application-peer2.properties：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-be6331696db811850dd22d034bc22451_hd.jpg" alt="img"></p>
+<p>两个配置文件的内容分别如下：<br>application-peer1.properties:<br>server.port=1111 eureka.instance.hostname=peer1 eureka.client.register-with-eureka=false eureka.client.fetch-registry=false eureka.client.service-url.defaultZone=<a href="https://link.zhihu.com/?target=http%3A//peer2%3A1112/eureka/" target="_blank" rel="noopener">http://peer2:1112/eureka/</a><br>application-peer2.properties:<br>server.port=1112 eureka.instance.hostname=peer2 eureka.client.register-with-eureka=false eureka.client.fetch-registry=false eureka.client.service-url.defaultZone=<a href="https://link.zhihu.com/?target=http%3A//peer1%3A1111/eureka/" target="_blank" rel="noopener">http://peer1:1111/eureka/</a><br>关于这两个配置文件我说如下几点：<br>1.在peer1的配置文件中，让它的service-url指向peer2，在peer2的配置文件中让它的service-url指向peer1<br>2.为了让peer1和peer2能够被正确的访问到，我们需要在<code>C:\Windows\System32\drivers\etc</code>目录下的hosts文件总添加两行配置，如下:<br>127.0.0.1 peer1<br>127.0.0.1 peer2<br>3.由于peer1和peer2互相指向对方，实际上我们构建了一个双节点的服务注册中心集群<br><strong>生成jar文件</strong><br>OK，这次我们不直接从IDEA中启动项目，而是先给工程生成jar文件，生成方式如下，双击package生成：</p>
+<p><img src="https://pic3.zhimg.com/80/v2-3fa185bcf4795ae127491729b835d78a_hd.jpg" alt="img"></p>
+<p>生成结果如下：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-3c40829a650f96ab57be6975d78f8601_hd.jpg" alt="img"></p>
+<p><strong>启动项目</strong><br>生成jar文件之后，我们在命令行通过java命令来启动项目，在启动的时候我们可以设置采用不同的配置文件来启动项目，命令如下：<br>java -jar eureka-server-0.0.1-SNAPSHOT.jar –spring.profiles.active=peer1 java -jar eureka-server-0.0.1-SNAPSHOT.jar –spring.profiles.active=peer2<br>这两行命令表示我们分别采用application-peer1.properties和application-peer2.properties两个配置文件来启动应用，OK，执行完这两个命令之后，我们的服务注册中心就启动了两个了，效果图如下：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-f826bfbe0fe790d07c6f120d4ba171d7_hd.jpg" alt="img"></p>
+<p><img src="https://pic3.zhimg.com/80/v2-5505f5b9762aa653df4e4572681d87c2_hd.jpg" alt="img"></p>
+<p>我们可以看到，在peer1的节点的DS replicas我们已经可以看到peer2节点了，在peer2的DS replicas中我们也可以看到peer1节点了。<br>OK，如此之后，我们的服务注册中心集群就搭建好了，然后我们可以做一个简单的测试。<br><strong>测试</strong><br>修改上篇博客中提到的provider项目的配置文件，如下：<br>spring.application.name=hello-service eureka.client.service-url.defaultZone=<a href="https://link.zhihu.com/?target=http%3A//peer1%3A1111/eureka%2Chttp%3A//peer2%3A1112/eureka" target="_blank" rel="noopener">http://peer1:1111/eureka,http://peer2:1112/eureka</a><br>小伙伴们注意，我们在service-url中添加了两个注册中心地址，两个地址中间用,隔开，OK，修改一下这里就可以了，接下来我们来启动这个项目，启动成功之后我们再去刷新<a href="http://localhost:1111和http://localhost:1112" target="_blank" rel="noopener">http://localhost:1111和http://localhost:1112</a> 两个页面，我们会发现我的服务提供者在这两个服务注册中心都注册了，如下：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-0581108fc4c2dca163dd2dc7991d7db5_hd.jpg" alt="img"></p>
+<p><img src="https://pic3.zhimg.com/80/v2-172f17854f47ef32a81c3cc7996ac3c6_hd.jpg" alt="img"></p>
+<p>OK，至此，一个高可用的服务注册中心我们就搭建成功了，有问题欢迎留言讨论。下篇文章我们就来看看<strong>Spring Cloud中服务的发现与消费</strong><br>本文案例地址：<a href="https://link.zhihu.com/?target=https%3A//github.com/lenve/SimpleSpringCloud" target="_blank" rel="noopener">https://github.com/lenve/Simple</a></p>
+
       
     </div>
     <div>
@@ -667,7 +690,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Spring-Boot/" rel="tag"><i class="fa fa-tag"></i>Spring Boot</a>
+            <a href="/tags/spring-cloud/" rel="tag"><i class="fa fa-tag"></i>spring cloud</a>
           
         </div>
       
@@ -680,18 +703,14 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/26/十、Spring-Boot-CROS支持/" rel="prev" title="十、Spring Boot CROS支持">
-                 <i class="fa fa-chevron-left"></i> 十、Spring Boot CROS支持
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/25/八、Spring-Boot异常处理详解/" rel="next" title="八、Spring Boot异常处理详解">
-                八、Spring Boot异常处理详解 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/11/30/使用Spring-Cloud搭建服务注册中心/" rel="next" title=" 使用Spring Cloud搭建服务注册中心">
+                 使用Spring Cloud搭建服务注册中心 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -741,8 +760,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -939,6 +967,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#jnydy-二、使用Spring-Cloud搭建高可用服务注册中心"><span class="nav-number">1.</span> <span class="nav-text">jnydy-二、使用Spring Cloud搭建高可用服务注册中心</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
