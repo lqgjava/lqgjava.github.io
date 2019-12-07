@@ -196,13 +196,13 @@
 <meta property="og:site_name" content="凌枫&#39;s Blog">
 <meta property="og:description" content="SpringCloud整体架构概览原创： 梦想de星空 macrozheng 9月9日 什么是SpringCloud目标协调任何服务，简化分布式系统开发。 简介构建分布式系统不应该是复杂的，SpringCloud对常见的分布式系统模式提供了简单易用的编程模型，帮助开发者构建弹性、可靠、协调的应用程序。SpringCloud是在SpringBoot的基础上构建的，使开发者可以轻松入门并快速提高工作效">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/.com//C:%5CUsers%5Clqg%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1575633667869.png">
-<meta property="og:image" content="http://yoursite.com/.com//C:%5CUsers%5Clqg%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1575633704318.png">
-<meta property="og:updated_time" content="2019-12-06T12:02:19.315Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20191207152903646.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019120715294699.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70">
+<meta property="og:updated_time" content="2019-12-07T07:33:25.250Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringCloud学习教程目录一:SpringCloud整体架构概览">
 <meta name="twitter:description" content="SpringCloud整体架构概览原创： 梦想de星空 macrozheng 9月9日 什么是SpringCloud目标协调任何服务，简化分布式系统开发。 简介构建分布式系统不应该是复杂的，SpringCloud对常见的分布式系统模式提供了简单易用的编程模型，帮助开发者构建弹性、可靠、协调的应用程序。SpringCloud是在SpringBoot的基础上构建的，使开发者可以轻松入门并快速提高工作效">
-<meta name="twitter:image" content="http://yoursite.com/.com//C:%5CUsers%5Clqg%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1575633667869.png">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20191207152903646.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70">
 
 
 
@@ -526,12 +526,24 @@
                 
               
 
-              <time title="创建时间：2019-12-06 15:13:04 / 修改时间：20:02:19" itemprop="dateCreated datePublished" datetime="2019-12-06T15:13:04+08:00">2019-12-06</time>
+              <time title="创建时间：2019-12-06 15:13:04" itemprop="dateCreated datePublished" datetime="2019-12-06T15:13:04+08:00">2019-12-06</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-12-07 15:33:25" itemprop="dateModified" datetime="2019-12-07T15:33:25+08:00">2019-12-07</time>
               
             
           </span>
@@ -606,7 +618,7 @@
         <h2 id="SpringCloud整体架构概览"><a href="#SpringCloud整体架构概览" class="headerlink" title="SpringCloud整体架构概览"></a>SpringCloud整体架构概览</h2><p>原创： 梦想de星空 <a href="javascript:void(0);" target="_blank" rel="noopener">macrozheng</a> <em>9月9日</em></p>
 <h2 id="什么是SpringCloud"><a href="#什么是SpringCloud" class="headerlink" title="什么是SpringCloud"></a>什么是SpringCloud</h2><h3 id="目标"><a href="#目标" class="headerlink" title="目标"></a>目标</h3><p>协调任何服务，简化分布式系统开发。</p>
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>构建分布式系统不应该是复杂的，SpringCloud对常见的分布式系统模式提供了简单易用的编程模型，帮助开发者构建弹性、可靠、协调的应用程序。SpringCloud是在SpringBoot的基础上构建的，使开发者可以轻松入门并快速提高工作效率。SpringCloud为开发人员提供了快速构建分布式系统架构的工具，例如配置管理，服务发现，断路器，智能路由，微代理，控制总线，一次性令牌，全局锁定，领导选举，分布式会话，集群状态等。</p>
-<h2 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h2><p><img src="/.com//C:%5CUsers%5Clqg%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1575633667869.png" alt="1575633667869"></p>
+<h2 id="整体架构"><a href="#整体架构" class="headerlink" title="整体架构"></a>整体架构</h2><p><img src="https://img-blog.csdnimg.cn/20191207152903646.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70" alt="img"></p>
 <p>来自Spring官网</p>
 <h2 id="SpringCloud的版本关系"><a href="#SpringCloud的版本关系" class="headerlink" title="SpringCloud的版本关系"></a>SpringCloud的版本关系</h2><p>SpringCloud是一个由许多子项目组成的综合项目，各子项目有不同的发布节奏。为了管理SpringCloud与各子项目的版本依赖关系，发布了一个清单，其中包括了某个SpringCloud版本对应的子项目版本。为了避免SpringCloud版本号与子项目版本号混淆，SpringCloud版本采用了名称而非版本号的命名，这些版本的名字采用了伦敦地铁站的名字，根据字母表的顺序来对应版本时间顺序，例如Angel是第一个版本, Brixton是第二个版本。当SpringCloud的发布内容积累到临界点或者一个重大BUG被解决后，会发布一个”service releases”版本，简称SRX版本，比如Greenwich.SR2就是SpringCloud发布的Greenwich版本的第2个SRX版本。</p>
 <h3 id="SpringCloud和SpringBoot版本对应关系"><a href="#SpringCloud和SpringBoot版本对应关系" class="headerlink" title="SpringCloud和SpringBoot版本对应关系"></a>SpringCloud和SpringBoot版本对应关系</h3><table>
@@ -741,7 +753,7 @@
 <li><a href="https://mp.weixin.qq.com/s?__biz=MzU1Nzg4NjgyMw==&mid=2247483939&idx=1&sn=bef5753e4885856e6ae7932fb0bdb622&scene=21#wechat_redirect" target="_blank" rel="noopener">我的Github开源项目，从0到20000 Star！</a></li>
 </ul>
 <hr>
-<p><img src="/.com//C:%5CUsers%5Clqg%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5C1575633704318.png" alt="1575633704318"></p>
+<p><img src="https://img-blog.csdnimg.cn/2019120715294699.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQzNjc0MTMy,size_16,color_FFFFFF,t_70" alt="img"></p>
 <p><strong>欢迎关注，点个在看</strong></p>
 <p>梦想de星空</p>
 <p>转发和在看是对作者最大的支持</p>
